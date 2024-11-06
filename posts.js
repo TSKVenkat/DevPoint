@@ -170,7 +170,7 @@ async function sendReport(report) {
 
     const reportContent = `Report from ${username}, ${userEmail} at ${formattedDate}\n\n${report}`;
     try {
-        const response = await fetch('https://devpointsnuc.vercel.app/api/send-report', {
+        const response = await fetch('api/send-report', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
