@@ -151,6 +151,6 @@ const socialMediaIcons = {
     discord: "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6266bc493fb42d4e27bb8393_847541504914fd33810e70a0ea73177e.ico",
     linkedin: "https://cdn-icons-png.flaticon.com/128/3536/3536505.png",
     kaggle: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/189_Kaggle_logo_logos-512.png",
-    instagram: "https://static.cdninstagram.com/rsrc.php/v3/yG/r/De-Dwpd5CHc.png",
+    instagram: "https://cdn-icons-png.flaticon.com/512/1409/1409946.png",
     twitter: "https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png"
 };
