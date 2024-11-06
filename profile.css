@@ -1,0 +1,232 @@
+html {
+    background-image: linear-gradient(to right, #2c2c2c, #000000, rgb(44, 44, 44));
+}
+
+.setup {
+    background-color: rgba(245, 245, 245, 0.142);
+    width: 1500px;
+    height: 660px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    animation: fade 4s;
+}
+
+
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.integrations {
+    position: absolute;
+    left: 1000px;
+    top: 20px;
+}
+
+h1 {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-weight: 400;
+}
+
+.preview {
+    width: 400px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.192);
+    margin: 30px;
+    border-radius: 10px;
+}
+
+.details {
+    flex-direction: column;
+    text-align: left;
+    position: absolute;
+    top: 20px;
+    left: 480px;
+}
+
+.pfp_upload {
+    color: white;
+}
+
+.input {
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+}
+
+.input_email {
+    color: white;
+}
+
+.details label {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-weight: 500;
+}
+
+.details input {
+    width: 400px;
+    height: 25px;
+    font-family: "Poppins", sans-serif;
+}
+
+.integrations label {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-weight: 500;
+}
+
+.integrations input {
+    width: 400px;
+    height: 25px;
+    background-color:white;
+    font-family: "Poppins", sans-serif;
+}
+
+#pfp {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    position: absolute;
+    top: 80px;
+    left: 125px;
+}
+
+#name {
+    font-family: "Poppins", sans-serif;
+    color: black;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    top: 240px;
+}
+
+#email {
+    font-family: "Poppins", sans-serif;
+    color: black;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: center;
+    position: relative;
+    top: 210px;
+}
+
+textarea {
+    resize: none;
+    border-radius: 5px;
+    width: 400px;
+    font-family: "Poppins", sans-serif;
+}
+
+#button {
+    position: absolute;
+    top: 540px;
+    width: 100px;
+    height: 35px;
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.227);
+    border-radius: 5px;
+    border:0px;
+}
+
+#button:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#color {
+    width: 50px;
+    border-radius: 5px;
+}
+
+#about {
+    background-color: rgba(240, 248, 255, 0.19);
+    width: 95%;
+    height: 195px;
+    margin: 10px;
+    position: relative;
+    top: 170px;
+    border-radius: 5px;
+    border: 5px white;
+}
+
+#about p {
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+    margin: 10px 10px 10px 10px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+}
+
+.intlogo {
+    position: relative;
+    top: 180px;
+    width: 95%;
+    left: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#instagram {
+    margin-top: 5px;
+}
+
+#github {
+    margin-top: 3px;
+}
+
+#kaggle {
+    margin-top: 5px;
+}
+
+#linkedin {
+    margin-top: 5px;
+}
+
+#discord {
+    margin-top: 5px;
+}
+
+#twitter {
+    margin-top: 5px;
+}
+
+#nxtbutton {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    height: 35px;
+    width: 60px;
+    background-color: rgba(255, 255, 255, 0.227);
+    border-radius: 5px;
+    border:0px;
+    position: absolute;
+    right: 0px;
+    bottom: -50px;
+}
+
+#nxtbutton:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}

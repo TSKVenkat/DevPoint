@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Devpoint - ML Chat</title>
+    <link rel="stylesheet" href="ml.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="sidebar">
+        <p id="title">Chats</p>
+        <button id="ml" class="logo">Machine Learning</button>
+        <button id="web" class="logo">Web Development</button>
+        <button id="iot" class="logo">Internet of Things</button>
+        <button id="cys" class="logo">Cybersecurity</button>
+        <button id="ds" class="logo">Datascience</button>
+        <button id="gd" class="logo">Game Development</button>
+    </div>
+
+    <div class="chat">
+        <div id="messages"></div>
+        <textarea id="message-input" name="msg" required placeholder="Type message"></textarea><br><br>
+        <button id="send-button">
+            <svg width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.6375 46.1297C16.6375 46.4293 16.8038 46.704 17.0684 46.844C17.3327 46.9839 17.6541 46.966 17.9012 46.7968L23.4658 42.9972L16.6376 39.7427V46.1297H16.6375Z"
+                    fill="#d82929" />
+                <path
+                    d="M49.7403 3.27715C49.5874 3.13624 49.3902 3.0625 49.1908 3.0625C49.0706 3.0625 48.9507 3.08917 48.8372 3.14492L0.798528 26.7092C0.307521 26.9505 -0.00318469 27.4519 0.000148626 28.0004C0.00348194 28.5482 0.31944 29.0462 0.813982 29.2821L13.4747 35.3148L38.7897 14.5079L16.6116 36.8094L32.3837 44.3245C32.5774 44.4173 32.7889 44.4635 32.9982 44.4635C33.1768 44.4635 33.3537 44.4309 33.5221 44.3648C33.8894 44.2195 34.1814 43.9286 34.3271 43.5611L49.9428 4.16744C50.0664 3.85744 49.9858 3.503 49.7403 3.27715Z"
+                    fill="#d82929" />
+            </svg>
+        </button>
+        <button id="file-button">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#d82929"
+                height="30px" width="30px" version="1.1" viewBox="0 0 511.999 511.999"
+                xml:space="preserve">
+                <g>
+                    <g>
+                        <path
+                            d="M466.904,68.854c-60.129-60.127-157.962-60.127-218.091,0L35.373,282.294c-47.166,47.167-47.161,123.497,0,170.659    c47.053,47.051,123.609,47.049,170.659,0l213.441-213.442c33.973-33.973,33.973-89.254,0-123.228    c-33.974-33.974-89.254-33.974-123.228,0L114.204,298.327c-7.833,7.833-7.833,20.532,0,28.365c7.833,7.833,20.531,7.833,28.365,0    L324.61,144.65c18.333-18.336,48.164-18.334,66.497,0c18.333,18.334,18.333,48.165,0,66.498l-213.44,213.441    c-31.412,31.41-82.519,31.41-113.93,0c-31.487-31.487-31.484-82.445,0-113.929L277.179,97.219    c44.595-44.596,116.77-44.59,161.36,0c44.596,44.595,44.59,116.77,0,161.36l-94.863,94.863c-7.833,7.833-7.833,20.532,0,28.365    c7.834,7.833,20.531,7.833,28.365,0l94.863-94.863C527.031,226.817,527.031,128.981,466.904,68.854z" />
+                    </g>
+                </g>
+            </svg>
+        </button>
+    </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content" id="popup-content">
+            <span class="close-button" id="closePopup">&times;</span>
+            <h2>Attachments</h2>
+            <p>As you explore Devpoint, please be aware of potential risks associated with online platforms. While we
+                strive to maintain a safe community, malicious users may attempt to share phishing links or viruses.
+            </p>
+            <label>Link</label>
+            <input id="linkupload" type="text" placeholder="Enter URL"><br>
+            <label>Upload document</label><br>
+            <input id="docupload" type="file" accept=".docx,.ppt,.pptx,.pdf,.py,.js,.html,.c,.php,.txt"><br>
+            <label>Upload Image</label><br>
+            <input id="imgupload" type="file" accept=".png,.jpg,.jpeg,.svg,.gif"><br><br>
+            <button id="attach">Attach</button>
+        </div>
+    </div>
+
+    <script type="module" src="ml.js"></script>
+</body>
+
+</html>

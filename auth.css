@@ -1,0 +1,185 @@
+html {
+    background-color: black;
+}
+
+.container {
+    width: 1000px;
+    height: 600px;
+    align-self: center;
+    margin: 70px auto;
+    background-color: rgb(26, 26, 26);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.subcontainer {
+    /*margin: 10px;*/
+    width: 1000px;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+}
+
+.box1 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box1:hover {
+    background-color: #7d59fe;
+}
+
+.box2 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box2:hover {
+    background-color: #a7b2ff;
+}
+
+.box3 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box3:hover {
+    background-color: #0c8b9a;
+}
+
+.box4 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box4:hover {
+    background-color: #5ebdb6;
+}
+
+.box5 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box5:hover {
+    background-color: #5c5c5c;
+}
+
+.box6 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box6:hover {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #fff,
+        0 0 82px #fff,
+        0 0 92px #fff,
+        0 0 102px #fff,
+        0 0 151px #fff;
+
+background-color: #fbf5f5;
+}
+
+.box7 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box7:hover {
+    background-color: #5d0000;
+}
+
+.box8 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box8:hover {
+    background-color: #ed9b5b;
+}
+
+.box9 {
+    margin: 5px;
+    height: 78%;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.box9:hover {
+    background-color: #d6d3ca;
+}
+
+#place {
+    background-color: rgba(255, 255, 255, 0.111);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    width: 250px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    top:320px;
+    left: 630px;
+}
+
+#authtext {
+    color: white;
+    font-family: "Poppins",sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center; 
+}
+
+
+#authbutton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    border: 0px;
+    transform: .2s;
+    border-radius: 5px;
+    align-self: center;
+    margin-bottom: 20px;
+}
+
+#authbutton:hover {
+    transform: scale(1.01);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#authbutton svg{
+    align-self: center;
+}
+
+#authbutton p{
+    align-self: center;
+    font-family: "Poppins", sans-serif;
+    color: rgba(0, 28, 90, 0.888);
+    font-weight: 500;
+}

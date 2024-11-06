@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Account SetUp</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="setup">
+        <div class="preview">
+            <img id="pfp" src="">
+            <p id="name"></p>
+            <p id="email"></p><br>
+            <div id="about">
+                <p id="bio"></p>
+            </div>
+            <div class="intlogo" id="intlogo"></div>
+
+            <div class="details">
+                <h1>Details</h1>
+                <label for="username">Username</label><br>
+                <input type="text" class="input" required placeholder="snucguy04" id="uname" disabled><br><br>
+                <label for="Email">Email</label><br>
+                <input type="email" class="input_email" disabled placeholder="snuc@gmail.com" id="uemail"><br><br>
+                <label for="msg">About Yourself</label><br>
+                <textarea id="msg" name="msg" rows="5" required placeholder="Write about yourself!"
+                    maxlength="500"></textarea><br><br>
+                <!--<label for="favcolor">Select Profile Card Colour</label><br>
+                <input type="color" id="color" name="favcolor"><br><br>-->
+                <button type="submit" id="button">Update</button>
+            </div>
+
+            <div class="integrations">
+                <h1>Integrations</h1>
+                <label for="GitHub">GitHub</label><br>
+                <input type="text" class="input" id="github-input" required placeholder="https://github.com/YourProfile"><br><br>
+                <label for="Discord">Discord</label><br>
+                <input type="text" class="input" id="discord-input" required placeholder="https://discord.com/YourProfile"><br><br>
+                <label for="LinkedIn">LinkedIn</label><br>
+                <input type="text" class="input" id="linkedin-input" required placeholder="https://linkedIn.com/YourProfile"><br><br>
+                <label for="Kaggle">Kaggle</label><br>
+                <input type="text" class="input" id="kaggle-input" required placeholder="https://kaggle.com/YourProfile"><br><br>
+                <label for="Twitter">Twitter</label><br>
+                <input type="text" class="input" id="twitter-input" required placeholder="https://twitter.com/YourProfile"><br><br>
+                <label for="Instagram">Instagram</label><br>
+                <input type="text" class="input" id="instagram-input" required placeholder="https://instagram.com/YourProfile"><br><br>
+                <button id="nxtbutton">Next</button>
+            </div>
+        </div>
+
+        <script type="module" src="profile.js"></script>
+</body>
+
+</html>

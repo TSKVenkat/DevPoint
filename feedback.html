@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>DevPoint - Feedback & Feature Requests</title>
+    <link rel="stylesheet" href="feedback.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="header">Crowdsourcing Innovation</h1>
+    <p class="intro">We want <strong>DevPoint</strong> to be as dynamic as the community behind it. Share your feedback,
+        suggest
+        features, and help us shape the future of the platform. Your ideas fuel our updates, so don’t hold back—let us
+        know what will make your experience even better!</p>
+
+    <h1 class="tag">Help Us Build the Platform You Need.</h1>
+    <button class="post" id="post">+</button>
+
+
+    <div id="popup" class="popup">
+        <div class="popup-content" id="popup-content">
+            <span class="close-button" id="closePopup">&times;</span>
+            <h2>Feedback & Feature Requests</h2>
+            <p>Have an idea that would make <strong>DevPoint</strong> even better? We want to hear it! Whether it's a feature you’re
+                dreaming of or a tweak that would enhance your experience, drop your suggestions here. Your input powers
+                our improvements, so let’s build a platform together that’s truly designed by and for its community!
+            </p>
+            <label>Title</label>
+            <input id="title" type="text" placeholder="Enter Title"><br>
+            <label>Description</label>
+            <input id="desc" type="text" placeholder="Type your message here..."><br>
+            <label>Link</label>
+            <input id="linkupload" type="text" placeholder="Enter URL"><br>
+            <label>Upload Image</label><br>
+            <input id="imgupload" type="file" accept=".png,.jpg,.jpeg,.svg,.gif"><br><br>
+            <button id="Post">Post</button>
+        </div>
+    </div>
+
+    <script type="module" src="feedback.js"></script>
+</body>
+
+</html>

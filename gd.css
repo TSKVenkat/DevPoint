@@ -1,0 +1,556 @@
+body {
+    background-color: #9b29d8;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.sidebar {
+    width: 15%;
+    height: 680px;
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes slide-up-opacity {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    top: 10px;
+    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+}
+
+#ml {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 100px;
+    left: 5px;
+    height: 60px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 95%;
+    border: 0px;
+    color: white;
+    transition-duration: 1s;
+}
+
+#ml:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+#cys {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 200px;
+    left: 5px;
+    height: 60px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 95%;
+    border: 0px;
+    color: white;
+    transition-duration: 1s;
+}
+
+#cys:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+#web {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 300px;
+    left: 5px;
+    height: 60px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 95%;
+    border: 0px;
+    color: white;
+    transition-duration: 1s;
+}
+
+#web:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+#iot {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 400px;
+    left: 5px;
+    height: 60px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 95%;
+    border: 0px;
+    color: white;
+    transition-duration: 1s;
+}
+
+#iot:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+#ds {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 400;
+    position: absolute;
+    top: 500px;
+    left: 5px;
+    height: 60px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 95%;
+    border: 0px;
+    transition-duration: 1s;
+}
+
+#ds:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+#gd {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 600px;
+    left: 5px;
+    height: 60px;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 95%;
+    border: 0px;
+    color: white;
+    transition-duration: 1s;
+}
+
+#gd:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+#message-input {
+    resize: none;
+    width: 85%;
+    height: 50px;
+    margin: 23px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    border-radius: 5px;
+    /*border-color: yellow;*/
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.441);
+    font-family: "Poppins", sans-serif;
+    color: white;
+    transform: .2s;
+    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+}
+
+#message-input:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#send-button {
+    color: rgb(255, 255, 255);
+    background-color: #ffffff;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: .2s;
+    border: 0px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 25px;
+    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+}
+
+#send-button:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#file-button {
+    color: rgb(255, 255, 255);
+    background-color: #ffffff;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: .2s;
+    border: 0px;
+    position: absolute;
+    bottom: 0px;
+    right: 70px;
+    margin: 25px;
+    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+}
+
+#file-button:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#img-button {
+    color: rgb(255, 255, 255);
+    background-color: #ffffff;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: .2s;
+    border: 0px;
+    position: absolute;
+    bottom: 0px;
+    right: 140px;
+    margin: 25px;
+    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+}
+
+#img-button:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.chat {
+    width: 84%;
+    height: 680px;
+    position: relative;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.226);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+}
+
+#title {
+    font-family: "Poppins", sans-serif;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    top: -50px;
+    left: 30px;
+    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+}
+
+#messages {
+    max-height: 80vh;
+    /* Constrain height */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-right: 25px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    height: 550px;
+    width: 95%;
+    background-color: transparent;
+}
+
+.popup {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.371);
+    /* Black background with opacity */
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.popup-content {
+    background-color: rgba(255, 255, 255, 0.342);
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    transition: transform .2s;
+    font-family: "Poppins";
+    font-size: 15px;
+    color: #9b29d8;
+}
+
+.popup-content a {
+    text-decoration: solid;
+    color: #9b29d8;
+}
+
+.popup-content:hover {
+    transform: scale(1.01);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.popup-content label {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.popup-content input {
+    width: 99%;
+    height: 25px;
+    border-radius: 5px;
+    /*border-color: yellow;*/
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.441);
+}
+
+#docupload,
+#imgupload {
+    width: auto;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    background-color: transparent;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#attach {
+    background-color: #9b29d8;
+    width: 100px;
+    height: 25px;
+    border: 0px;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}
+
+#attach:hover {
+    transform: scale(1.05);
+}
+
+body {
+    background-color: #9b29d8;
+}
+
+.other-message {
+    background-color: rgba(255, 255, 255, 0.147);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: row;
+    float:left;
+    border-radius: 10px;
+    margin: 10px;
+    width: auto;
+    max-width: 50%;
+    text-align: left;
+}
+
+.other-message p {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    margin: 10px;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+    text-align: left;
+}
+
+
+.my-message {
+    float: right;
+    display: flex;
+    flex-direction: row-reverse;
+    /* Makes the bubble fit the content */
+    background-color: rgba(255, 255, 255, 0.418);
+    backdrop-filter: blur(3px);
+    margin: 10px;
+    border-radius: 10px;
+    max-width: 50%;
+    width: auto;
+    text-align: right;
+}
+
+.pfp {
+    margin: 10px;
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+}
+
+.my-message p {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    margin: 10px;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+}
+
+.filedisplay {
+    margin: 10px;
+    background-color: rgba(51, 51, 51, 0.399);
+    backdrop-filter: blur(3px);
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.filedisplay-my {
+    margin:20px;
+    background-color: rgba(51, 51, 51, 0.399);
+    backdrop-filter: blur(3px);
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    float: right;
+}
+
+.filedisplay svg {
+    margin: 10px;
+}
+
+.filedisplay-my svg{
+    margin: 10px;
+    position: absolute;
+    left: 0px;
+    
+}
+
+.docurl {
+    text-decoration: none;
+    color: wheat;
+    position: absolute;
+    left: 40px;
+    top: 5px;
+}
+
+img {
+    max-width: 80%;
+    max-height: 80%;
+    width: auto;
+    height: 300px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.my-message a {
+    margin: 10px;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+}
+
+.other-message a{
+    margin: 10px;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+}
+
+.a1 {
+    position: absolute;
+    bottom: -30px;
+    left: 0px;
+    margin: 0px;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+}
+
+.a2 {
+    position: absolute;
+    bottom: -10px;
+    right: 50px;
+    margin: 0px;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+}
+
+.a3 {
+    position: absolute;
+    bottom: -10px;
+    left: 50px;
+    margin: 0px;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+}

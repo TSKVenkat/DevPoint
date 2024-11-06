@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    background: rgb(37, 37, 37);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#chat-container {
+    background: rgba(29, 29, 29, 0.84);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 95%;
+    height: 80%;
+    padding: 20px;
+}
+
+#messages {
+    height: 92%;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.message {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+#message-input {
+    width: 90%;
+    height: 40px;
+    border-radius: 15px;
+    position: relative;
+    left: 25px;
+}
+
+#send-button {
+    height: 45px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.293);
+    backdrop-filter: blur(2px);
+    border: 0px;
+    color: white;
+    width: 80px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    position: relative;
+    left: 25px;
+}
+
+#send-button:hover {
+    transform: scale(1.05);
+}
+
+.decor {
+    max-width: 70%;
+    width: 60%;
+    background-color: transparent;
+    position: relative;
+    left: 280px;
+    color: white;
+    text-align: left;
+}
+
+/* Differentiate between own messages and others' messages */
+.my-message {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    width: 60%;
+    height: auto;
+    margin: 10px;
+    /* background-color: aquamarine; */
+    color: white;
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+    position: relative;
+    left: 300px;
+}
+
+.my-message img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+    position: relative;
+    left: 10px;
+    top: 20px;
+}
+
+.my-message p{
+    margin: 80px;
+    position: relative;
+    bottom: 105px;
+}
+
+.other-message {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    width: 60%;
+    height: auto;
+    margin: 10px;
+    /* background-color: aquamarine; */
+    color: white;
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+    position: relative;
+    left: 300px;
+}
+
+.other-message p{
+    margin: 80px;
+    position: relative;
+    bottom: 105px;
+}
+
+.other-message img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+    position: relative;
+    left: 10px;
+    top: 20px;
+}
+
+#message-input {
+    font-family: "Poppins",sans-serif;
+    color: black;
+}
+
+.footer {
+    background-color: #000000;
+    width: 1500px;
+    height: 100px;
+    position: absolute;
+    left: 0px;
+    top: 750px;
+    width: 100%;
+}
+
+.footer p{
+    width: 480px;
+    font-family: "Handjet",sans-serif;
+    color: white;
+    font-size: 400;
+    font-size: 18px;
+    text-align: left;
+    margin: 10px;
+    padding-left: 20px;
+}
+
+#meta_logo {
+    position: absolute;
+    bottom: 20px;
+    right: 300px;
+}
+
+#dp_logo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#line {
+    background-color: white;
+    width: 1px;
+    height: 60px;
+    position: absolute;
+    bottom: 20px;
+    right: 265px;
+}

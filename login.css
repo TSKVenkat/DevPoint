@@ -1,0 +1,51 @@
+html {
+    background-color: black;
+}
+
+#spin {
+    animation: rotation 20s infinite linear;
+    position: absolute;
+    left: 450px;
+    top: 80px;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#authbutton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: absolute;
+    left: 640px;
+    top: 350px;
+}
+
+#authbutton:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#authbutton svg{
+    align-self: center;
+}
+
+#authbutton p{
+    align-self: center;
+    font-family: "Poppins", sans-serif;
+    color: rgba(0, 28, 90, 0.888);
+    font-weight: 500;
+}

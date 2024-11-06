@@ -1,0 +1,146 @@
+body{
+    background-image: linear-gradient(to right, rgb(11, 73, 207), rgb(1, 31, 73), rgb(11, 73, 207));
+    opacity: 0.95;
+}
+
+img {
+    border-radius: 100%;
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    animation: slide-right-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+    object-fit: cover;
+    opacity: 0;
+    transform: .2s;
+}
+
+img:hover {
+    transform: scale(1.1);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.container {
+    position: absolute;
+    top: 250px;
+    left: 200px;
+    width: 80%;
+    height: 400px;
+    background-color: rgba(255, 255, 255, 0.226);
+    backdrop-filter: blur(5px);
+    border-radius: 5px;
+    animation: slide-right-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+    opacity: 0;
+}
+
+.container:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+@keyframes slide-right-opacity {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.about {
+    width: 95%;
+    height: auto;
+    color: white;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 50px;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    margin: 20px;
+    text-align: left;
+}
+
+.name {
+    width: auto;
+    height: auto;
+    color: white;
+    align-self: flex-end;
+    position: absolute;
+    top: 0px;
+    left: 150px;
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    margin: 20px;
+    text-align: left;
+}
+
+.degree {
+    width: auto;
+    height: auto;
+    color: white;
+    align-self: flex-end;
+    position: absolute;
+    top: 35px;
+    left: 670px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    margin: 20px;
+    text-align: left;
+}
+
+strong{
+    color: yellow;
+}
+
+.socials {
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    bottom: 0px;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#insta_icon {
+    position: relative;
+    bottom: 0px;
+    margin: 15px;
+    color: white;
+}
+
+#insta_icon:hover {
+    transform: scale(1.1);
+}
+
+#mail_icon{
+    position: relative;
+    top: 10px;
+}
+
+#mail_icon:hover {
+    transform: scale(1.1);
+}
+
+.links{
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    bottom: 8px;
+}

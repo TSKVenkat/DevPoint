@@ -1,0 +1,234 @@
+body{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.club {
+    align-self: center;
+    font-family: "Handjet";
+    font-weight: 500;
+    font-size: 250px;
+    color: red;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 1s all ease-in;
+}
+
+.club:hover {
+    background-image: url("https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXdodTF3NDlzcm16ZGttNXdkN283NmhpMzU3bWN4bHZ1Mm5vMzl0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gBUKBfv5muhFeo1wk3/giphy.gif");
+    background-size: cover;
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
+    transform: scale(1.1);
+    transition-duration: 1s;
+    text-shadow: -10px 10px #ffffff;
+}
+
+.club.visible {
+    opacity: 1;
+    transition: 0.5s;
+    transform: translateY(0px);
+}
+
+.tag{
+    align-self: center;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    position: relative;
+    bottom: 200px;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 1s all ease-in;
+}
+
+.tag.visible {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.info{
+    align-self: center;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    position: relative;
+    bottom: 200px;
+    width: 1100px;
+    text-align: center;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 1s all ease-in;
+}
+
+.info.visible {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.header{
+    align-self: center;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 1s all ease-in;
+}
+
+.header.visible {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.user-div{
+    width: 800px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.167);
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 350px;
+    margin: 10px;
+}
+
+.username {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: white;
+    position: relative;
+    left: 30px;
+}
+
+.useremail {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: white;
+    position: relative;
+    left: 120px;
+}
+
+.user-div:hover {
+    background-color: rgba(255, 255, 255, 0.274);
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+
+img {
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+    margin: 10px;
+    position: relative;
+    left: 10px;
+}
+
+.img {
+    border-radius: 100%;
+    width: 128px;
+    height: 128px;
+    margin: 10px;
+    align-self: center;
+}
+
+.viewbutton {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: white;
+    width: 75px;
+    height: 40px;
+    align-self: center;
+    border-radius: 10px;
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.148);
+    position: absolute;
+    right: 10px;
+}
+
+.viewbutton:hover {
+    background-color: rgba(255, 255, 255, 0.247);
+}
+
+.popup {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.371);
+    /* Black background with opacity */
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.342);
+    padding: 20px;
+    border-radius: 5px;
+    width: 25%;
+    height: auto;
+    max-width: 600px;
+    transition: transform .2s;
+    font-family: "Poppins";
+    font-size: 15px;
+    color: #ffffff;
+    overflow-wrap: anywhere;
+    /* Forces wrapping at any point */
+    word-break: break-word;
+    /* Allows breaking in the middle of words if necessary */
+    hyphens: auto;
+    /* Optional: Adds hyphens where appropriate */
+}
+
+.popup-content h2{
+    align-self: center;
+}
+
+.name {
+    align-self: center;
+    font-weight: 700;
+}
+
+.eid {
+    align-self: center;
+}
+
+.bio {
+    align-self: center;
+    text-align: left;
+}
+
+.popup-content:hover {
+    transform: scale(1.01);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.intlogo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
