@@ -51,13 +51,27 @@ import dotenv from 'dotenv';
 dotenv.config(); // Loads environment variables from .env file
 
 export default async function handler(req, res) {
-    // Only allow POST requests
+    // CORS Preflight for OPTIONS requests
+    if (req.method === 'OPTIONS') {
+        const allowedOrigins = ['https://devpointsnuc.vercel.app'];
+        const origin = req.headers.origin;
+
+        if (allowedOrigins.includes(origin)) {
+            res.setHeader('Access-Control-Allow-Origin', origin);
+            res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+            res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+            return res.status(200).end(); // Options preflight return
+        } else {
+            return res.status(403).json({ error: 'CORS Not Allowed' });
+        }
+    }
+
+    // Proceed with your existing POST request handling
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    // CORS Handling
-    const allowedOrigins = ['https://devpointsnuc.vercel.app/'];
+    const allowedOrigins = ['https://devpointsnuc.vercel.app'];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin)) {
@@ -68,14 +82,13 @@ export default async function handler(req, res) {
         return res.status(403).json({ error: 'CORS Not Allowed' });
     }
 
-    // Extract email and report content from the request body
     const { userEmail, reportContent } = req.body;
 
     if (!userEmail || !reportContent) {
         return res.status(400).json({ error: 'Missing userEmail or reportContent' });
     }
 
-    // Nodemailer transporter setup
+    // Nodemailer setup
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -85,18 +98,19 @@ export default async function handler(req, res) {
     });
 
     const mailOptions = {
-        from: process.env.EMAIL_USER,    // Replace with your email
-        to: 'tskv.0411@gmail.com',        // Replace with your receiving email
+        from: process.env.EMAIL_USER,
+        to: 'tskv.0411@gmail.com',
         subject: 'DevPoint User Report',
         text: reportContent
     };
 
-    // Send email and handle response
     try {
         const info = await transporter.sendMail(mailOptions);
+        res.setHeader('Access-Control-Allow-Origin', origin);
         res.status(200).json({ message: 'Report sent successfully!', info: info.response });
     } catch (error) {
         console.error('Error sending email:', error);
+        res.setHeader('Access-Control-Allow-Origin', origin);
         res.status(500).json({ error: 'Failed to send report' });
     }
 }
