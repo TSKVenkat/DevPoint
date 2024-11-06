@@ -1,8 +1,8 @@
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
-    e.preventDefault();
-  }
+    if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
+        e.preventDefault();
+    }
 });
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -169,9 +169,8 @@ async function sendReport(report) {
         postDate.getMinutes().toString().padStart(2, '0');
 
     const reportContent = `Report from ${username}, ${userEmail} at ${formattedDate}\n\n${report}`;
-
     try {
-        const response = await fetch(`https://devpointsnuc.vercel.app/api/send-report`, {
+        const response = await fetch('https://devpointsnuc.vercel.app/api/send-report', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -183,14 +182,12 @@ async function sendReport(report) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-        const message = await response.text();
-        console.log(message);
+        const result = await response.json();
+        console.log(result.message);  // Success message
     } catch (error) {
-        console.error('Fetch error:', error); // Logs any errors from fetch
+        console.error('Fetch error:', error);
     }
 }
-
-
 
 // Send report
 reportButton.addEventListener('click', () => {
