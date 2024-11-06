@@ -106,11 +106,13 @@ export default async function handler(req, res) {
 
     try {
         const info = await transporter.sendMail(mailOptions);
+        console.log("Email sent successfully:", info.response); // Log the response
         res.setHeader('Access-Control-Allow-Origin', origin);
         res.status(200).json({ message: 'Report sent successfully!', info: info.response });
     } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Error sending email:', error); // Log the error
         res.setHeader('Access-Control-Allow-Origin', origin);
         res.status(500).json({ error: 'Failed to send report' });
     }
+
 }
