@@ -12,7 +12,7 @@ import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/
 
 import dotenv from 'dotenv';
 
-dotenv.config();//LOADS ALL VARIABLES FROM ENV FILE
+dotenv.config();//LOADS ALL VARIABLES FROM ENV FILE TO PROCESS.ENV
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTUWEC7hhM0SY2IUM06KD9p473bNykKno",

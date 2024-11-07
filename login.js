@@ -80,7 +80,7 @@ document.getElementById("authbutton").addEventListener("click", () => {
                         kaggle: ''
                     });
                     console.log("User information saved successfully:",);
-                    window.location.href = "posts.html";
+                    window.location.href = "profile.html";
                 } catch (error) {
                     console.error("Error saving user information:", error);
                 }
