@@ -26,6 +26,7 @@ const apiKey = process.env.API;
 const apiurl = 'https://api.groq.com/openai/v1/chat/completions';
 
 app.post('/api-post', async function api(message) {
+  console.log('into api-post')
   const res = await fetch(apiurl, {
     method: "POST",
     headers: {
