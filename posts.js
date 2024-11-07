@@ -170,7 +170,7 @@ async function sendReport(report) {
 
     const reportContent = `Report from ${username}, ${userEmail} at ${formattedDate}\n\n${report}`;
     try {
-        const response = await fetch('http://localhost:10000/', {
+        const response = await fetch('http://localhost:10000/send-report', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
