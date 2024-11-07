@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 const externalApiUrl = 'https://api.groq.com/openai/v1/chat/completions';
-const apiKey = process.env.API_KEY;  // Store your API key in a .env file
+const apiKey = process.env.API;  // Store your API key in a .env file
 
 // Endpoint to handle POST requests from the frontend
 app.post('/api/data', async (req, res) => {
