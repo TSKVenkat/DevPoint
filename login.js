@@ -68,9 +68,9 @@ document.getElementById("authbutton").addEventListener("click", () => {
                
                 try {
                     await set(ref(db, `users/${user.uid}`), {
-                        username: displayName,
-                        email,
-                        photoURL,
+                        username: user.displayName,
+                        email: user.email,
+                        photoURL: user.photoURL,
                         bio: '',
                         git: '',
                         linkedin: '',
