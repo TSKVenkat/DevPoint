@@ -1,10 +1,3 @@
-document.addEventListener('contextmenu', (e) => e.preventDefault());
-document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
-    e.preventDefault();
-  }
-});
-
 import dotenv from 'dotenv';
 import express from 'express';
 
