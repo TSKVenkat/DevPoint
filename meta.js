@@ -21,7 +21,7 @@ sendButton.addEventListener('click', async (e) => {
 
         async function fetchData(message) {
             try {
-              const response = await fetch('http://localhost:5000/api/data', {
+              const response = await fetch('https://devpoint-meta.onrender.com/api/data', {
                 method: 'POST',
                 headers: {
                   "Content-Type": "application/json"
