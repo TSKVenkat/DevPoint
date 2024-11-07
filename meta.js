@@ -19,7 +19,7 @@ sendButton.addEventListener('click', async (e) => {
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
 
-        const response = await req(message);
+        /* const response = await req(message);
         const converter = new showdown.Converter();
         const htmlText = converter.makeHtml(response);
 
@@ -28,11 +28,29 @@ sendButton.addEventListener('click', async (e) => {
         messagesContainer.appendChild(messageElement1);
         messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
 
-        messageInput.value = '';
+        messageInput.value = ''; */
+
+        // meta.js
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:5000/api/data');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data); // Use the data as needed
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call the fetchData function when needed
+        fetchData();
+
     }
 });
 
-async function req(message){
+async function req(message) {
     console.log('in')
     try {
         const response = await fetch('http://localhost:5000/api-post', {

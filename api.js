@@ -1,4 +1,4 @@
-import express from 'express';
+/* import express from 'express';
 import cors from 'cors';
 
 import dotenv from 'dotenv';
@@ -50,4 +50,27 @@ app.post('/api-post', async function api(message) {
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
+}); */
+
+// api.js
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(cors()); // Enable CORS to allow frontend access
+app.use(express.json());
+
+// Example API endpoint
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'Hello from the backend!' });
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
