@@ -5,12 +5,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-import dotenv from 'dotenv';
-dotenv.config();
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
-
 const messageInput = document.getElementById('message-input');
 const sendButton = document.getElementById('send-button');
 const messagesContainer = document.getElementById('messages');
