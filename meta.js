@@ -10,7 +10,7 @@ const sendButton = document.getElementById('send-button');
 const messagesContainer = document.getElementById('messages');
 
 // Send message
-sendButton.addEventListener('click', (e) => {
+sendButton.addEventListener('click', async (e) => {
     e.preventDefault()
     const message = messageInput.value;
     if (message) {
@@ -19,7 +19,7 @@ sendButton.addEventListener('click', (e) => {
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
 
-        const response = req(message);
+        const response = await req(message);
         const converter = new showdown.Converter();
         const htmlText = converter.makeHtml(response);
 
@@ -34,7 +34,7 @@ sendButton.addEventListener('click', (e) => {
 
 async function req(message){
     try {
-        const response = await fetch('/api/post', {
+        const response = await fetch('http://localhost:5000/api-post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
