@@ -1,8 +1,8 @@
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
-    e.preventDefault();
-  }
+    if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
+        e.preventDefault();
+    }
 });
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -56,9 +56,8 @@ document.getElementById("authbutton").addEventListener("click", () => {
     signInWithPopup(auth, provider)
         .then(async (result) => {
             const user = result.user;
-            const email = user.email;
 
-            const exists = await checkUserEmailExists(email);
+            const exists = await checkUserEmailExists(user.email);
             if (exists) {
                 // User exists, redirect to posts.html
                 localStorage.setItem("photoURL", user.photoURL);
@@ -66,10 +65,25 @@ document.getElementById("authbutton").addEventListener("click", () => {
                 localStorage.setItem("email", user.email);
                 window.location.href = "posts.html";
             } else {
-                // User does not exist in Realtime Database, delete them from Authentication
-                await user.delete();
-                console.log("User deleted from authentication.");
-                window.location.href = "auth.html";
+               
+                try {
+                    await set(ref(db, `users/${user.uid}`), {
+                        username: displayName,
+                        email,
+                        photoURL,
+                        bio: '',
+                        git: '',
+                        linkedin: '',
+                        discord: '',
+                        instagram: '',
+                        twitter: '',
+                        kaggle: ''
+                    });
+                    console.log("User information saved successfully:",);
+                    window.location.href = "posts.html";
+                } catch (error) {
+                    console.error("Error saving user information:", error);
+                }
             }
         })
         .catch((error) => {
