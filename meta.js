@@ -19,18 +19,6 @@ sendButton.addEventListener('click', async (e) => {
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
 
-        /* const response = await req(message);
-        const converter = new showdown.Converter();
-        const htmlText = converter.makeHtml(response);
-
-        const messageElement1 = document.createElement('div');
-        messageElement1.innerHTML = `<div class="other-message"><img src="https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/e8dQ3HclyZY.png"><p>${htmlText}</p></div>`;
-        messagesContainer.appendChild(messageElement1);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
-
-        messageInput.value = ''; */
-
-        // meta.js
         async function fetchData(message) {
             try {
               const response = await fetch('http://localhost:5000/api/data', {
@@ -54,8 +42,16 @@ sendButton.addEventListener('click', async (e) => {
             }
           }
 
-        // Call the fetchData function when needed
-        fetchData(message);
+        const response = await fetchData(message);
+        const converter = new showdown.Converter();
+        const htmlText = converter.makeHtml(response);
+
+        const messageElement1 = document.createElement('div');
+        messageElement1.innerHTML = `<div class="other-message"><img src="https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/e8dQ3HclyZY.png"><p>${htmlText}</p></div>`;
+        messagesContainer.appendChild(messageElement1);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
+
+        messageInput.value = '';
 
     }
 });
