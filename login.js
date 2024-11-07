@@ -65,7 +65,7 @@ document.getElementById("authbutton").addEventListener("click", () => {
                 localStorage.setItem("email", user.email);
                 window.location.href = "posts.html";
             } else {
-               
+
                 try {
                     await set(ref(db, `users/${user.uid}`), {
                         username: user.displayName,
@@ -79,6 +79,9 @@ document.getElementById("authbutton").addEventListener("click", () => {
                         twitter: '',
                         kaggle: ''
                     });
+                    localStorage.setItem("photoURL", user.photoURL);
+                    localStorage.setItem("displayName", user.displayName);
+                    localStorage.setItem("email", user.email);
                     console.log("User information saved successfully:",);
                     window.location.href = "profile.html";
                 } catch (error) {
