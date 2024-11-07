@@ -5,7 +5,11 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-import dotenv from './node_modules/dotenv/lib/main.js';
+(async () => {
+    const dotenv = await import('dotenv');
+    dotenv.config();
+})();
+
 dotenv.config();
 
 const port = process.env.PORT || 3000;
