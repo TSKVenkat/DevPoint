@@ -101,12 +101,9 @@ body {
     font-weight: 400;
     font-size: 15px;
     width: 60%;
-    height: auto;
     margin: 10px;
     /* background-color: aquamarine; */
     color: white;
-    hyphens: auto;
-    /* Optional: Adds hyphens where appropriate */
     position: relative;
     left: 300px;
 }
@@ -115,16 +112,6 @@ body {
     margin: 80px;
     position: relative;
     bottom: 105px;
-}
-
-.other-message img{
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 100%;
-    position: relative;
-    left: 10px;
-    top: 20px;
 }
 
 #message-input {
