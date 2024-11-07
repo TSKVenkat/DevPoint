@@ -24,40 +24,38 @@ sendButton.addEventListener('click', (e) => {
         messageElement.innerHTML = `<div class="my-message"><img src="${localStorage.getItem("photoURL")}"><p>${message}</p></div>`;
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
-        api(message);
+
+        const response = req(message);
+        const converter = new showdown.Converter();
+        const htmlText = converter.makeHtml(response);
+
+        const messageElement1 = document.createElement('div');
+        messageElement1.innerHTML = `<div class="other-message"><img src="https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/e8dQ3HclyZY.png"><p>${htmlText}</p></div>`;
+        messagesContainer.appendChild(messageElement1);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
+
         messageInput.value = '';
     }
 });
 
-// Replace <YOUR_API_KEY_HERE> with your actual API key
-const apiKey = process.env.API;
-const apiurl = 'https://api.groq.com/openai/v1/chat/completions';
+async function req(message){
+    try {
+        const response = await fetch('/api/post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'content': message })
+        });
 
-async function api(message) {
-    const res = await fetch(apiurl, {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${apiKey}`,
-            "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(
-            {
-                "model": "llama3-8b-8192",
-                "messages": [{
-                    role: "user",
-                    content: `${message}`
-                }]
-            }
-        )
-    })
-    const data = await res.json();
-    console.log(data.choices[0].message.content);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-    const converter = new showdown.Converter();
-    const htmlText = converter.makeHtml(data.choices[0].message.content);
+        const result = await response.json();
+        console.log(result);  // Success message
 
-    const messageElement = document.createElement('div');
-    messageElement.innerHTML = `<div class="other-message"><img src="https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/e8dQ3HclyZY.png"><p>${htmlText}</p></div>`;
-    messagesContainer.appendChild(messageElement);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
-};
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
