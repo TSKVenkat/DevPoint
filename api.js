@@ -43,6 +43,7 @@ app.post('/api-post', async function api(message) {
     )
   })
   const data = await res.json();
+  console.log(data);
   return data.choices[0].message.content;
 });
 
