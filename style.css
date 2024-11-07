@@ -252,7 +252,7 @@ p {
 }
 
 #sd1 {
-    width: 375px;
+    width: 500px;
     height: 40px;
     border-top-left-radius: 10px;
     font-family: "Poppins", sans-serif;
@@ -271,19 +271,7 @@ p {
 
 
 #sd2 {
-    width: 375px;
-    background-color: #ffcc001a;
-    height: 40px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    font-size: 25px;
-    color: rgb(255, 255, 255);
-    text-align: center;
-}
-
-#sd3 {
-    width: 375px;
+    width: 500px;
     background-color: #ffcc001a;
     height: 40px;
     font-family: "Poppins", sans-serif;
@@ -295,7 +283,7 @@ p {
 }
 
 #sd4 {
-    width: 375px;
+    width: 500px;
     background-color: #ffcc001a;
     height: 40px;
     border-top-right-radius: 10px;

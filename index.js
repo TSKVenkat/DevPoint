@@ -53,7 +53,6 @@ document.getElementById("sd2").onclick = function () {
     document.getElementById("t1").style.marginRight = "0px";
     document.getElementById("t1").style.marginLeft = "250px";
     document.getElementById("sd1").style.backgroundColor = "#ffcc001a";
-    document.getElementById("sd3").style.backgroundColor = "#ffcc001a";
     document.getElementById("sd4").style.backgroundColor = "#ffcc001a";
     document.getElementById("img2").src = "";
     document.getElementById("img3").src = "https://i.pinimg.com/564x/48/1b/2a/481b2a6fb860882fcb91e29cf2795a26.jpg";
@@ -68,7 +67,6 @@ This platform is especially <i>helpful for students who want to upskill but don'
 
 In essence, I built Devpoint to simplify the learning process and create a space where students can collaborate and grow together, sharing knowledge and helping each other succeed.`;
     document.getElementById("loginbut").style.display = "none";
-    document.getElementById("signupbut").style.display = "none";
 }
 
 document.getElementById("sd1").onclick = function () {
@@ -76,7 +74,6 @@ document.getElementById("sd1").onclick = function () {
     document.getElementById("t1").style.marginRight = "250px";
     document.getElementById("sd1").style.backgroundColor = "#ffcc0000";
     document.getElementById("sd2").style.backgroundColor = "#ffcc001a";
-    document.getElementById("sd3").style.backgroundColor = "#ffcc001a";
     document.getElementById("sd4").style.backgroundColor = "#ffcc001a";
     document.getElementById("img3").src = "";
     document.getElementById("img2").src = "https://i.pinimg.com/736x/7f/7b/0c/7f7b0c9bf14ae9b769705a071dfb6dd0.jpg";
@@ -109,24 +106,6 @@ In essence, Devpoint is designed to create a large-scale, user-driven repository
             In essence, Devpoint is designed to create a large-scale, user-driven repository of knowledge, helping
             people learn faster and more collaboratively.`;
     document.getElementById("loginbut").style.display = "none";
-    document.getElementById("signupbut").style.display = "none";
-}
-
-document.getElementById("sd3").onclick = function () {
-    document.getElementById("img3").src = "";
-    document.getElementById("t1").style.marginLeft = "10px";
-    document.getElementById("sd3").style.backgroundColor = "#ffcc0000";
-    document.getElementById("sd2").style.backgroundColor = "#ffcc001a";
-    document.getElementById("sd1").style.backgroundColor = "#ffcc001a";
-    document.getElementById("sd4").style.backgroundColor = "#ffcc001a";
-    document.getElementById("img2").src = "";
-    document.getElementById("t1").textContent = `Welcome to Devpoint! We're excited to have you join this growing community of learners and developers. By signing up, you're stepping into a space designed to help you grow your skills in competitive programming, web development, and other computer science fields. Whether you're here to discover valuable resources or share what you've learned, you're contributing to a larger goal: making learning easier and more collaborative for everyone.
-
-On Devpoint, every post you make has the potential to help someone else, and every resource you find could be the key to unlocking your next big breakthrough. Explore, contribute, and engage with your peers—together, we can create a more accessible and supportive environment for upskilling.
-
-Thanks for being a part of this journey. Let’s make learning a shared experience!`;
-    document.getElementById("signupbut").style.display = "block";
-    document.getElementById("loginbut").style.display = "none";
 }
 
 document.getElementById("sd4").onclick = function () {
@@ -136,18 +115,12 @@ document.getElementById("sd4").onclick = function () {
     document.getElementById("sd4").style.backgroundColor = "#ffcc0000";
     document.getElementById("sd2").style.backgroundColor = "#ffcc001a";
     document.getElementById("sd1").style.backgroundColor = "#ffcc001a";
-    document.getElementById("sd3").style.backgroundColor = "#ffcc001a";
     document.getElementById("t1").textContent = `Welcome back to Devpoint! We're glad to see you again. Dive back into the community and continue exploring, sharing, and upvoting the resources that help you and others grow in competitive programming, web development, and beyond.
 
 Your contributions and engagement make a difference here. Let’s keep the learning going and push the boundaries of what we can achieve together. Happy learning!`;
     document.getElementById("loginbut").style.display = "block";
-    document.getElementById("signupbut").style.display = "none";
 }
 
 document.getElementById("loginbut").onclick = function () {
     window.location.href = "login.html";
-}
-
-document.getElementById("signupbut").onclick = function () {
-    window.location.href = "auth.html";
 }

@@ -337,6 +337,8 @@ async function displayUserData(user) {
                     document.getElementById("msg").value = res[uid].bio || "";
                     document.getElementById("name").textContent = user.displayName || "No Name";
                     document.getElementById("email").textContent = user.email || "No Email";
+                    document.getElementById("uname").value = user.email || "snuc@gmail.com";
+                    document.getElementById("uemail").value = user.displayName || "No Name";
                     document.getElementById("pfp").src = user.photoURL || "default-profile.png";
 
                     // Clear previous icons and add new ones based on URLs
