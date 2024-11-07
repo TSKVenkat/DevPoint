@@ -10,7 +10,7 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;  // Use PORT from .env or default to 3000
 
-const allowedOrigins = ['http://localhost:5500', 'http://127.0.0.1:5500'];
+const allowedOrigins = ['https://devpointsnuc.vercel.app'];
 
 app.use(cors({
     origin: function (origin, callback) {
