@@ -10,10 +10,6 @@ import { getDatabase, ref as dbRef, set, get, onChildAdded, push, onChildChanged
 import { getStorage, ref as storageRef, uploadBytesResumable, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-import dotenv from 'dotenv';
-
-dotenv.config();//LOADS ALL VARIABLES FROM ENV FILE TO PROCESS.ENV
-
 const firebaseConfig = {
     apiKey: "AIzaSyCTUWEC7hhM0SY2IUM06KD9p473bNykKno",
     authDomain: "web-chat-7ff42.firebaseapp.com",
@@ -172,7 +168,7 @@ async function sendReport(report) {
 
     const reportContent = `Report from ${username}, ${userEmail} at ${formattedDate}\n\n${report}`;
     try {
-        const response = await fetch(process.env.ENDPOINT, {
+        const response = await fetch('https://devpoint-7u5k.onrender.com/send-report', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
