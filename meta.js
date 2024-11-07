@@ -33,6 +33,7 @@ sendButton.addEventListener('click', async (e) => {
 });
 
 async function req(message){
+    console.log('in')
     try {
         const response = await fetch('http://localhost:5000/api-post', {
             method: 'POST',
@@ -41,6 +42,8 @@ async function req(message){
             },
             body: JSON.stringify({ 'content': message })
         });
+
+        console.log('success');
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
