@@ -1,8 +1,8 @@
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
-    e.preventDefault();
-  }
+    if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
+        e.preventDefault();
+    }
 });
 
 const observer = new IntersectionObserver((entries) => {
@@ -112,12 +112,11 @@ document.getElementById("sd4").onclick = function () {
     document.getElementById("img3").src = "";
     document.getElementById("img2").src = "";
     document.getElementById("t1").style.marginLeft = "10px";
+    document.getElementById("t1").style.marginRight = "160px";
     document.getElementById("sd4").style.backgroundColor = "#ffcc0000";
     document.getElementById("sd2").style.backgroundColor = "#ffcc001a";
     document.getElementById("sd1").style.backgroundColor = "#ffcc001a";
-    document.getElementById("t1").textContent = `Welcome back to Devpoint! We're glad to see you again. Dive back into the community and continue exploring, sharing, and upvoting the resources that help you and others grow in competitive programming, web development, and beyond.
-
-Your contributions and engagement make a difference here. Let’s keep the learning going and push the boundaries of what we can achieve together. Happy learning!`;
+    document.getElementById("t1").innerHTML = `<strong>Welcome to Devpoint!</strong> Where coders, creators, and tech enthusiasts come together to learn, build, and share. Dive into our community to exchange knowledge, showcase projects, and level up your skills with fellow developers. Whether you’re here to collaborate, share resources, or just talk tech, Devpoint is your space to grow and make an impact. Sign in, connect, and let’s code something amazing together!`;
     document.getElementById("loginbut").style.display = "block";
 }
 
