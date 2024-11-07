@@ -10,16 +10,16 @@ app.use(express.json());
 
 const port = process.env.PORT || 3000;  // Use PORT from .env or default to 3000
 
-const allowedOrigins = ['https://devpointsnuc.vercel.app'];
+const allowedOrigins = ['https://devpointsnuc.vercel.app', 'http://localhost:5500'];
 
 app.use(cors({
-    origin: function (origin, callback) {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
+  }
 }));
 
 app.use(express.json());

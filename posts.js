@@ -170,7 +170,7 @@ async function sendReport(report) {
 
     const reportContent = `Report from ${username}, ${userEmail} at ${formattedDate}\n\n${report}`;
     try {
-        const response = await fetch('https://devpoint-7u5k.onrender.com', {
+        const response = await fetch('https://devpoint-7u5k.onrender.com/send-report', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
