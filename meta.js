@@ -31,46 +31,31 @@ sendButton.addEventListener('click', async (e) => {
         messageInput.value = ''; */
 
         // meta.js
-        async function fetchData() {
+        async function fetchData(message) {
             try {
-                const response = await fetch('http://localhost:5000/api/data');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                console.log(data); // Use the data as needed
+              const response = await fetch('http://localhost:5000/api/data', {
+                method: 'POST',
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message: message })
+              });
+          
+              if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+              }
+          
+              const data = await response.json();
+              console.log(data);
+              return data.content;
             } catch (error) {
-                console.error('Error fetching data:', error);
+              console.error("Error fetching data from backend:", error);
+              return null;
             }
-        }
+          }
 
         // Call the fetchData function when needed
-        fetchData();
+        fetchData(message);
 
     }
 });
-
-async function req(message) {
-    console.log('in')
-    try {
-        const response = await fetch('http://localhost:5000/api-post', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 'content': message })
-        });
-
-        console.log('success');
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        console.log(result);  // Success message
-
-    } catch (error) {
-        console.error('Fetch error:', error);
-    }
-}
