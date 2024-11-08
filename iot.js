@@ -117,9 +117,9 @@ document.getElementById("send-button").addEventListener('click', async function 
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      const username = user.displayName;
-      const photoURL = user.photoURL;
-      const email = user.email;
+      const username = localStorage.getItem("displayName");
+      const photoURL = localStorage.getItem("photoURL");
+      const email = localStorage.getItem("email");
       const content = document.getElementById('message-input').value;
       var link = document.getElementById('linkupload').value;
 
@@ -159,7 +159,7 @@ document.getElementById("send-button").addEventListener('click', async function 
           console.log(postData)
           console.log(newPostRef)
           console.log("Post submitted successfully!");
-          await set(newPostRef, postData);
+          set(newPostRef, postData);
         }
 
       }
@@ -172,7 +172,7 @@ document.getElementById("send-button").addEventListener('click', async function 
         if (username && email) {
           const newPostRef = push(dbRef(database, 'iot/'));
           console.log("Post submitted successfully!");
-          await set(newPostRef, postData);
+          set(newPostRef, postData);
         }
       }
 
@@ -190,7 +190,7 @@ document.getElementById("send-button").addEventListener('click', async function 
         if (username && email) {
           const newPostRef = push(dbRef(database, 'iot/'));
           console.log("Post submitted successfully!");
-          await set(newPostRef, postData);
+          set(newPostRef, postData);
         }
 
       }
@@ -200,7 +200,7 @@ document.getElementById("send-button").addEventListener('click', async function 
         if (username && email) {
           const newPostRef = push(dbRef(database, 'iot/'));
           console.log("Post submitted successfully without a file!");
-          await set(newPostRef, postData); // Save post to Firebase
+          set(newPostRef, postData); // Save post to Firebase
         }
       }
 
@@ -291,7 +291,7 @@ function displayPost(postId, post) {
 
       else if (!post.file_link && !post.img && !post.link) {
         // Create post content using post data
-        if (post.username == user.displayName) {
+        if (post.username == localStorage.getItem("displayName")) {
           postDiv.innerHTML = `<div class="my-message">
         <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
