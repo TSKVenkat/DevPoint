@@ -29,10 +29,8 @@ const auth = getAuth(app);
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // User is signed in, proceed with actions that require authentication
     console.log("User is signed in:", user);
   } else {
-    // User is not signed in, you can redirect to login page or show a sign-in prompt
     console.log("User is not signed in");
   }
 });
@@ -125,7 +123,7 @@ window.addEventListener('load', function () {
 document.getElementById("send-button").addEventListener('click', async function (e) {
     e.preventDefault();
 
-    const username = localStorage.getItem("displayName");
+    const username = user.displayName;
     const photoURL = localStorage.getItem("photoURL");
     const email = localStorage.getItem("email");
     const content = document.getElementById('message-input').value;
