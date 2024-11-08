@@ -26,6 +26,10 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
+const username=null;
+const photoURL= null;
+const email = null;
+
 document.getElementById("file-button").addEventListener("click", () => {
   document.getElementById("popup").style.display = 'flex';
 })
