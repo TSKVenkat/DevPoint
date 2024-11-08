@@ -132,8 +132,7 @@ document.getElementById("send-button").addEventListener('click', async function 
     }
   });
 
-  // Wait a moment to ensure auth data is populated before using postData
-  setTimeout(() => {
+
     const content = document.getElementById('message-input').value;
     const link = document.getElementById('linkupload').value;
 
@@ -155,10 +154,6 @@ document.getElementById("send-button").addEventListener('click', async function 
     console.log(postData);
     console.log(img);
     console.log(file);
-
-    // Proceed with the rest of your code to handle postData, file, and img as needed
-  }, 500);  // Adjust timeout as needed for your authentication timing
-
 
   if (file && !img) {
     var fname = file.name;
