@@ -119,14 +119,14 @@ document.getElementById("send-button").addEventListener('click', async function 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log("User is signed in:", user);
+      const username = user.displayName;
+      const photoURL = user.photoURL;
+      const email = user.email;
     } else {
       console.log("User is not signed in");
     }
   });
 
-  const username = user.displayName;
-  const photoURL = user.photoURL;
-  const email = user.email;
   const content = document.getElementById('message-input').value;
   var link = document.getElementById('linkupload').value;
 
