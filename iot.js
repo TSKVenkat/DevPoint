@@ -254,7 +254,8 @@ function displayPost(postId, post) {
     }
   });
 
-  if (!post.file_link && !post.img && post.link) {
+  setTimeout(() => {
+    if (!post.file_link && !post.img && post.link) {
     // Create post content using post data
     if (post.username == localStorage.getItem("displayName")) {
       postDiv.innerHTML = `<div class="my-message">
@@ -762,7 +763,7 @@ function displayPost(postId, post) {
       </div>
     </div><br>`;
     }
-  }
+  }}, 500);
 
   document.getElementById("messages").appendChild(postDiv);
 
