@@ -26,10 +26,6 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
-const username=null;
-const photoURL= null;
-const email = null;
-
 document.getElementById("file-button").addEventListener("click", () => {
   document.getElementById("popup").style.display = 'flex';
 })
@@ -120,38 +116,49 @@ document.getElementById("send-button").addEventListener('click', async function 
 
   const auth = getAuth(app);
 
+  // Declare variables outside the onAuthStateChanged callback to make them accessible in postData
+  let username = '';
+  let photoURL = '';
+  let email = '';
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       console.log("User is signed in:", user);
-      const username = user.displayName;
-      const photoURL = user.photoURL;
-      const email = user.email;
+      username = user.displayName;
+      photoURL = user.photoURL;
+      email = user.email;
     } else {
       console.log("User is not signed in");
     }
   });
 
-  const content = document.getElementById('message-input').value;
-  var link = document.getElementById('linkupload').value;
+  // Wait a moment to ensure auth data is populated before using postData
+  setTimeout(() => {
+    const content = document.getElementById('message-input').value;
+    const link = document.getElementById('linkupload').value;
 
-  // Create the postData object
-  const postData = {
-    username,
-    photoURL,
-    email,
-    content,
-    link,
-    img: '',
-    file_link: '',
-    file_name: ''
-  };
+    // Create the postData object
+    const postData = {
+      username,
+      photoURL,
+      email,
+      content,
+      link,
+      img: '',
+      file_link: '',
+      file_name: ''
+    };
 
-  var file = document.getElementById("docupload").files[0]; // Get the file from the input
-  var img = document.getElementById('imgupload').files[0];// Get the image from the input
+    const file = document.getElementById("docupload").files[0]; // Get the file from the input
+    const img = document.getElementById('imgupload').files[0];  // Get the image from the input
 
-  console.log(img);
+    console.log(postData);
+    console.log(img);
+    console.log(file);
 
-  console.log(file);
+    // Proceed with the rest of your code to handle postData, file, and img as needed
+  }, 500);  // Adjust timeout as needed for your authentication timing
+
 
   if (file && !img) {
     var fname = file.name;
