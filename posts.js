@@ -359,7 +359,7 @@ postButton.addEventListener('click', async function (e) {
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             const username = user.displayName;
-            const email = localStorage.email;
+            const email = user.email;
             const title = document.getElementById('titleupload').value;
             const subject = document.getElementById('subupload').value;
             const content = document.getElementById('message-post').value;
