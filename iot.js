@@ -8,17 +8,15 @@ document.addEventListener('keydown', (e) => {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import { getDatabase, ref as dbRef, set, get, onChildAdded, push } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
-
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCTUWEC7hhM0SY2IUM06KD9p473bNykKno",
-  authDomain: "web-chat-7ff42.firebaseapp.com",
-  projectId: "web-chat-7ff42",
-  storageBucket: "web-chat-7ff42.appspot.com",
-  messagingSenderId: "605843374216",
-  appId: "1:605843374216:web:ed5d13ebab206431bedf3d",
-  measurementId: "G-JJ9BLC1NYG"
+    apiKey: "AIzaSyCTUWEC7hhM0SY2IUM06KD9p473bNykKno",
+    authDomain: "web-chat-7ff42.firebaseapp.com",
+    projectId: "web-chat-7ff42",
+    storageBucket: "web-chat-7ff42.appspot.com",
+    messagingSenderId: "605843374216",
+    appId: "1:605843374216:web:ed5d13ebab206431bedf3d",
+    measurementId: "G-JJ9BLC1NYG"
 };
 
 // Initialize Firebase
@@ -27,238 +25,203 @@ const database = getDatabase(app);
 const storage = getStorage(app);
 
 document.getElementById("file-button").addEventListener("click", () => {
-  document.getElementById("popup").style.display = 'flex';
+    document.getElementById("popup").style.display = 'flex';
 })
 
 document.getElementById("closePopup").addEventListener("click", () => {
-  document.getElementById("popup").style.display = 'none';
+    document.getElementById("popup").style.display = 'none';
 })
 
 window.addEventListener('click', (event) => {
-  if (event.target === document.getElementById("popup")) {
-    document.getElementById("popup").style.display = 'none'; // Hide the pop-up
-  }
+    if (event.target === document.getElementById("popup")) {
+        document.getElementById("popup").style.display = 'none'; // Hide the pop-up
+    }
 });
 
 //FUNCTIONS
 async function fileupload(file) {
-  // Create file metadata
-  const metadata = {
-    contentType: file.type
-  };
+    // Create file metadata
+    const metadata = {
+        contentType: file.type
+    };
 
-  console.log('into file checking SUCCESS');
-  console.log(file.name);
+    console.log('into file checking SUCCESS');
+    console.log(file.name);
 
-  // Create storage reference
-  const fileRef = storageRef(storage, `Files/${file.name}`);
+    // Create storage reference
+    const fileRef = storageRef(storage, `Files/${file.name}`);
 
-  try {
-    // Start the upload and wait for it to complete
-    const uploadSnapshot = await uploadBytesResumable(fileRef, file, metadata);
-    console.log('Upload complete! Getting download URL...');
+    try {
+        // Start the upload and wait for it to complete
+        const uploadSnapshot = await uploadBytesResumable(fileRef, file, metadata);
+        console.log('Upload complete! Getting download URL...');
 
-    // Get the download URL once the upload is complete
-    const downloadURL = await getDownloadURL(uploadSnapshot.ref);
-    console.log("File available at:", downloadURL);
+        // Get the download URL once the upload is complete
+        const downloadURL = await getDownloadURL(uploadSnapshot.ref);
+        console.log("File available at:", downloadURL);
 
-    // Return the URL so it can be used later
-    return downloadURL;
+        // Return the URL so it can be used later
+        return downloadURL;
 
-  } catch (error) {
-    console.error("File upload failed:", error);
-    throw error; // Rethrow the error to handle it elsewhere if needed
-  }
+    } catch (error) {
+        console.error("File upload failed:", error);
+        throw error; // Rethrow the error to handle it elsewhere if needed
+    }
 }
 
 
 //Uploading images
 async function imgupload(file) {
-  // Validate that the file exists before using it
-  if (!file) {
-    console.error("File is undefined. Make sure a file is selected before uploading.");
-    return;
-  }
+    // Validate that the file exists before using it
+    if (!file) {
+        console.error("File is undefined. Make sure a file is selected before uploading.");
+        return;
+    }
 
-  const uniqueName = `images/${Date.now()}-${file.name}`; // Add unique identifier
-  const storageref = storageRef(storage, uniqueName);
+    const uniqueName = `images/${Date.now()}-${file.name}`; // Add unique identifier
+    const storageref = storageRef(storage, uniqueName);
 
-  console.log(uniqueName);
-  console.log(storageref);
+    console.log(uniqueName);
+    console.log(storageref);
 
-  try {
-    await uploadBytes(storageref, file);  // Upload file
-    const url = await getDownloadURL(storageref);  // Get URL to access file
-    console.log(url);
-    return url;
-  } catch (error) {
-    console.error(error);
-  }
+    try {
+        await uploadBytes(storageref, file);  // Upload file
+        const url = await getDownloadURL(storageref);  // Get URL to access file
+        console.log(url);
+        return url;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 //POST FEATURE
 window.addEventListener('load', function () {
-  // Reference to the posts collection in Firebase
-  const postsRef = dbRef(database, 'iot');
+    // Reference to the posts collection in Firebase
+    const postsRef = dbRef(database, 'iot');
 
-  // Listen for new and existing posts
-  onChildAdded(postsRef, (snapshot) => {
-    const post = snapshot.val();
-    console.log(post);
-    const postId = snapshot.key;
-    displayPost(postId, post); // Call function to display post
-  });
+    // Listen for new and existing posts
+    onChildAdded(postsRef, (snapshot) => {
+        const post = snapshot.val();
+        console.log(post);
+        const postId = snapshot.key;
+        displayPost(postId, post); // Call function to display post
+    });
 
 });
 
 document.getElementById("send-button").addEventListener('click', async function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const auth = getAuth(app);
-
-  // Declare variables outside the onAuthStateChanged callback to make them accessible in postData
-  let username = '';
-  let photoURL = '';
-  let email = '';
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("User is signed in:", user);
-      username = user.displayName;
-      photoURL = user.photoURL;
-      email = user.email;
-    } else {
-      console.log("User is not signed in");
-    }
-  });
-
-
+    const username = localStorage.getItem("displayName");
+    const photoURL = localStorage.getItem("photoURL");
+    const email = localStorage.getItem("email");
     const content = document.getElementById('message-input').value;
-    const link = document.getElementById('linkupload').value;
+    var link = document.getElementById('linkupload').value;
 
     // Create the postData object
     const postData = {
-      username,
-      photoURL,
-      email,
-      content,
-      link,
-      img: '',
-      file_link: '',
-      file_name: ''
+        username,
+        photoURL,
+        email,
+        content,
+        link,
+        img: '',
+        file_link: '',
+        file_name: ''
     };
 
-    const file = document.getElementById("docupload").files[0]; // Get the file from the input
-    const img = document.getElementById('imgupload').files[0];  // Get the image from the input
+    var file = document.getElementById("docupload").files[0]; // Get the file from the input
+    var img = document.getElementById('imgupload').files[0];// Get the image from the input
 
-    console.log(postData);
     console.log(img);
+
     console.log(file);
 
-  if (file && !img) {
-    var fname = file.name;
-    try {
-      postData.file_link = await fileupload(file);
-      postData.file_name = fname;
-      console.log("File uploaded successfully. Download URL:", url);
-      // Use the URL for further processing, e.g., saving it to the database
-    } catch (error) {
-      console.error("File upload failed:", error);
+    if (file && !img) {
+        var fname = file.name;
+        try {
+            postData.file_link = await fileupload(file);
+            postData.file_name = fname;
+            console.log("File uploaded successfully. Download URL:", url);
+            // Use the URL for further processing, e.g., saving it to the database
+        } catch (error) {
+            console.error("File upload failed:", error);
+        }
+
+        // Save post to Firebase after file upload is complete
+        if (username && email) {
+            const newPostRef = push(dbRef(database, 'iot/'));
+            console.log(postData)
+            console.log(newPostRef)
+            console.log("Post submitted successfully!");
+            set(newPostRef, postData);
+        }
+
     }
 
-    // Save post to Firebase after file upload is complete
-    if (username && email) {
-      const newPostRef = push(dbRef(database, 'iot/'));
-      console.log(postData)
-      console.log(newPostRef)
-      console.log("Post submitted successfully!");
-      set(newPostRef, postData);
+    else if (!file && img) {
+        // Update postData with the image link and name after upload is successful
+        postData.img = await imgupload(img);
+        console.log(postData.img);
+        // Save post to Firebase after file upload is complete
+        if (username && email) {
+            const newPostRef = push(dbRef(database, 'iot/'));
+            console.log("Post submitted successfully!");
+            set(newPostRef, postData);
+        }
     }
 
-  }
+    else if (file && img) {
+        var fname = file.name;
+        try {
+            postData.img = await imgupload(img);
+            console.log(postData.img);
+            // Update postData with the file link and name after upload is successful
+            postData.file_link = await fileupload(file);
+            postData.file_name = fname;
+        } catch (error) { console.error(error); }
 
-  else if (!file && img) {
-    // Update postData with the image link and name after upload is successful
-    postData.img = await imgupload(img);
-    console.log(postData.img);
-    // Save post to Firebase after file upload is complete
-    if (username && email) {
-      const newPostRef = push(dbRef(database, 'iot/'));
-      console.log("Post submitted successfully!");
-      set(newPostRef, postData);
-    }
-  }
+        // Save post to Firebase after file upload is complete
+        if (username && email) {
+            const newPostRef = push(dbRef(database, 'iot/'));
+            console.log("Post submitted successfully!");
+            set(newPostRef, postData);
+        }
 
-  else if (file && img) {
-    var fname = file.name;
-    try {
-      postData.img = await imgupload(img);
-      console.log(postData.img);
-      // Update postData with the file link and name after upload is successful
-      postData.file_link = await fileupload(file);
-      postData.file_name = fname;
-    } catch (error) { console.error(error); }
-
-    // Save post to Firebase after file upload is complete
-    if (username && email) {
-      const newPostRef = push(dbRef(database, 'iot/'));
-      console.log("Post submitted successfully!");
-      set(newPostRef, postData);
     }
 
-  }
-
-  else {
-    // No file to upload, save post immediately
-    if (username && email) {
-      const newPostRef = push(dbRef(database, 'iot/'));
-      console.log("Post submitted successfully without a file!");
-      set(newPostRef, postData); // Save post to Firebase
+    else {
+        // No file to upload, save post immediately
+        if (username && email) {
+            const newPostRef = push(dbRef(database, 'iot/'));
+            console.log("Post submitted successfully without a file!");
+            set(newPostRef, postData); // Save post to Firebase
+        }
     }
-  }
 
-  // Clear form inputs after posting
-  document.getElementById("docupload").value = null;
-  document.getElementById("imgupload").value = null;
-  document.getElementById("linkupload").value = null;
-  document.getElementById("message-input").value = null;
+    // Clear form inputs after posting
+    document.getElementById("docupload").value = null;
+    document.getElementById("imgupload").value = null;
+    document.getElementById("linkupload").value = null;
+    document.getElementById("message-input").value = null;
 
 });
 
 document.getElementById("attach").addEventListener("click", () => {
-  document.getElementById("popup").style.display = 'none';
+    document.getElementById("popup").style.display = 'none';
 })
 
 // Function to display post
 function displayPost(postId, post) {
-  const postDiv = document.createElement('div');
+    const postDiv = document.createElement('div');
 
-  console.log(post);
-  console.log(post.file_link);
+    console.log(post);
+    console.log(post.file_link);
 
-  const auth = getAuth(app);
-
-  // Declare variables outside the onAuthStateChanged callback to make them accessible in postData
-  let username = '';
-  let photoURL = '';
-  let email = '';
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("User is signed in:", user);
-      username = user.displayName;
-      photoURL = user.photoURL;
-      email = user.email;
-    } else {
-      console.log("User is not signed in");
-    }
-  });
-
-  setTimeout(() => {
     if (!post.file_link && !post.img && post.link) {
-    // Create post content using post data
-    if (post.username == localStorage.getItem("displayName")) {
-      postDiv.innerHTML = `<div class="my-message">
+        // Create post content using post data
+        if (post.username == localStorage.getItem("displayName")) {
+            postDiv.innerHTML = `<div class="my-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -267,9 +230,9 @@ function displayPost(postId, post) {
       <a href="${post.link}">${post.link}</a>
     </div>
   </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -278,14 +241,14 @@ function displayPost(postId, post) {
       <a href="${post.link}">${post.link}</a>
     </div>
   </div><br>`;
+        }
+
     }
 
-  }
-
-  else if (!post.file_link && post.img && !post.link) {
-    // Create post content using post data
-    if (post.username == localStorage.getItem("displayName")) {
-      postDiv.innerHTML = `<div class="my-message">
+    else if (!post.file_link && post.img && !post.link) {
+        // Create post content using post data
+        if (post.username == localStorage.getItem("displayName")) {
+            postDiv.innerHTML = `<div class="my-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -294,9 +257,9 @@ function displayPost(postId, post) {
       <img src="${post.img}">
     </div>
   </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -305,14 +268,14 @@ function displayPost(postId, post) {
       <img src="${post.img}">
     </div>
   </div><br>`;
+        }
+
     }
 
-  }
-
-  else if (!post.file_link && !post.img && !post.link) {
-    // Create post content using post data
-    if (post.username == username) {
-      postDiv.innerHTML = `<div class="my-message">
+    else if (!post.file_link && !post.img && !post.link) {
+        // Create post content using post data
+        if (post.username == localStorage.getItem("displayName")) {
+            postDiv.innerHTML = `<div class="my-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -320,9 +283,9 @@ function displayPost(postId, post) {
       <p>${post.content}</p>
     </div>
   </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -330,12 +293,12 @@ function displayPost(postId, post) {
       <p>${post.content}</p>
     </div>
   </div><br>`;
+        }
     }
-  }
 
-  else if (!post.file_link && post.img && post.link) {
-    if (post.username == localStorage.getItem("displayName")) {
-      postDiv.innerHTML = `<div class="my-message">
+    else if (!post.file_link && post.img && post.link) {
+        if (post.username == localStorage.getItem("displayName")) {
+            postDiv.innerHTML = `<div class="my-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -345,9 +308,9 @@ function displayPost(postId, post) {
     </div>
     <a class="a2" href="${post.link}">${post.link}</a>
   </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -357,14 +320,14 @@ function displayPost(postId, post) {
       <img src="${post.img}">
     </div>
   </div><br>`;
+        }
     }
-  }
 
-  else if (!post.img && post.file_link && !post.link) {
+    else if (!post.img && post.file_link && !post.link) {
 
-    if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == localStorage.getItem("displayName")) {
 
-      postDiv.innerHTML = `<div class="my-message">
+            postDiv.innerHTML = `<div class="my-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -408,9 +371,9 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -454,12 +417,12 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
+        }
     }
-  }
 
-  else if (post.file_link && post.img && !post.link) {
-    if (post.username == localStorage.getItem("displayName")) {
-      postDiv.innerHTML = `<div class="my-message">
+    else if (post.file_link && post.img && !post.link) {
+        if (post.username == localStorage.getItem("displayName")) {
+            postDiv.innerHTML = `<div class="my-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -505,9 +468,9 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -553,12 +516,12 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
+        }
     }
-  }
 
-  else if (!post.img && post.link && post.file_link) {
-    if (post.username == localStorage.getItem("displayName")) {
-      postDiv.innerHTML = `<div class="my-message">
+    else if (!post.img && post.link && post.file_link) {
+        if (post.username == localStorage.getItem("displayName")) {
+            postDiv.innerHTML = `<div class="my-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -603,9 +566,9 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -650,23 +613,23 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
+        }
     }
-  }
 
-  else {
-    console.log(post.file_link);
-
-    if (post.file_name.length > 13) {
-      var fname = post.file_name.slice(0, 10) + "...";
-      console.log(fname);
-    }
     else {
-      var fname = post.file_name;
-    }
+        console.log(post.file_link);
 
-    // Create post content using post data
-    if (post.username == localStorage.getItem("displayName")) {
-      postDiv.innerHTML = `<div class="my-message">
+        if (post.file_name.length > 13) {
+            var fname = post.file_name.slice(0, 10) + "...";
+            console.log(fname);
+        }
+        else {
+            var fname = post.file_name;
+        }
+
+        // Create post content using post data
+        if (post.username == localStorage.getItem("displayName")) {
+            postDiv.innerHTML = `<div class="my-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -713,9 +676,9 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
-    }
-    else {
-      postDiv.innerHTML = `<div class="other-message">
+        }
+        else {
+            postDiv.innerHTML = `<div class="other-message">
       <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
         <div class="content">
@@ -762,29 +725,29 @@ function displayPost(postId, post) {
 
       </div>
     </div><br>`;
+        }
     }
-  }
 
-  document.getElementById("messages").appendChild(postDiv);}, 1500);
+    document.getElementById("messages").appendChild(postDiv);
 
 }
 
 document.getElementById("web").addEventListener("click", () => {
-  window.location.href = "web.html";
+    window.location.href = "web.html";
 })
 
 document.getElementById("ml").addEventListener("click", () => {
-  window.location.href = "ml.html";
+    window.location.href = "ml.html";
 })
 
 document.getElementById("cys").addEventListener("click", () => {
-  window.location.href = "cys.html";
+    window.location.href = "cys.html";
 })
 
 document.getElementById("gd").addEventListener("click", () => {
-  window.location.href = "gd.html";
+    window.location.href = "gd.html";
 })
 
 document.getElementById("ds").addEventListener("click", () => {
-  window.location.href = "ds.html";
+    window.location.href = "ds.html";
 })
