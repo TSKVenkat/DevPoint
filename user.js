@@ -45,6 +45,7 @@ document.addEventListener('keydown', (e) => {
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 // Firebase configuration (replace this with your own Firebase config)
 const firebaseConfig = {
@@ -61,66 +62,86 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+async function getCurrentUser(auth) {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                resolve(user);
+            } else {
+                reject(new Error("User not signed in"));
+            }
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        const snapshot = await get(child(ref(db), "users"));
-        if (snapshot.exists()) {
-            const res = snapshot.val();
-            for (let user in res) {
-                console.log(res[user]);
+    const auth = getAuth(app);
+    const user = await getCurrentUser(auth);
+    if (user) {
+        try {
+            const snapshot = await get(child(ref(db), "users"));
+            if (snapshot.exists()) {
+                const res = snapshot.val();
+                for (let user in res) {
+                    console.log(res[user]);
 
-                const messageElement = document.createElement('div');
+                    const messageElement = document.createElement('div');
 
-                messageElement.innerHTML = `<div class="user-div">
+                    messageElement.innerHTML = `<div class="user-div">
                     <img src="${res[user].photoURL}">
                     <p class="username">${res[user].username}</p>
                     <p class="useremail">${res[user].email}</p>
                     <button class="viewbutton" data-user="${user}">View</button>
                 </div>`;
 
-                document.body.appendChild(messageElement);
+                    document.body.appendChild(messageElement);
 
-                messageElement.querySelector(".viewbutton").addEventListener("click", (event) => {
-                    const userId = event.target.getAttribute("data-user"); // Retrieve the user key
-                    console.log("User key:", userId); // Log the corresponding record key
-                    console.log("User data:", res[userId]); // Log the corresponding user data
+                    messageElement.querySelector(".viewbutton").addEventListener("click", (event) => {
+                        const userId = event.target.getAttribute("data-user"); // Retrieve the user key
+                        console.log("User key:", userId); // Log the corresponding record key
+                        console.log("User data:", res[userId]); // Log the corresponding user data
 
-                    // Populate the popup with user data
-                    document.getElementById("img").src = res[userId].photoURL;
-                    document.getElementById("name").textContent = res[userId].username;
-                    document.getElementById("eid").textContent = res[userId].email;
-                    document.getElementById("bio").textContent = res[userId].bio;
+                        // Populate the popup with user data
+                        document.getElementById("img").src = res[userId].photoURL;
+                        document.getElementById("name").textContent = res[userId].username;
+                        document.getElementById("eid").textContent = res[userId].email;
+                        document.getElementById("bio").textContent = res[userId].bio;
 
-                    // Clear previous social media icons
-                    const intlogoDiv = document.getElementById("intlogo");
-                    intlogoDiv.innerHTML = ''; // Clear existing icons
+                        // Clear previous social media icons
+                        const intlogoDiv = document.getElementById("intlogo");
+                        intlogoDiv.innerHTML = ''; // Clear existing icons
 
-                    // Define social media links
-                    const socialMediaLinks = {
-                        github: res[userId].git,
-                        discord: res[userId].discord,
-                        linkedin: res[userId].linkedin,
-                        kaggle: res[userId].kaggle,
-                        instagram: res[userId].instagram,
-                        twitter: res[userId].twitter
-                    };
+                        // Define social media links
+                        const socialMediaLinks = {
+                            github: res[userId].git,
+                            discord: res[userId].discord,
+                            linkedin: res[userId].linkedin,
+                            kaggle: res[userId].kaggle,
+                            instagram: res[userId].instagram,
+                            twitter: res[userId].twitter
+                        };
 
-                    // Loop through the social media links and create icons
-                    for (let [id, url] of Object.entries(socialMediaLinks)) {
-                        if (url) {
-                            createSocialIcon(id, socialMediaIcons[id], url);
+                        // Loop through the social media links and create icons
+                        for (let [id, url] of Object.entries(socialMediaLinks)) {
+                            if (url) {
+                                createSocialIcon(id, socialMediaIcons[id], url);
+                            }
                         }
-                    }
 
-                    // Show popup
-                    document.getElementById("popup").style.display = 'flex';
-                });
+                        // Show popup
+                        document.getElementById("popup").style.display = 'flex';
+                    });
+                }
             }
+        } catch (error) {
+            console.error(error);
         }
-    } catch (error) {
-        console.error(error);
+    } else {
+        alert('user not authenticated');
+        window.location.href = 'login.html';
     }
-});
+}
+);
 
 // Close popup event listener
 document.getElementById("closePopup").addEventListener("click", () => {
