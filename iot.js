@@ -236,6 +236,24 @@ function displayPost(postId, post) {
   console.log(post);
   console.log(post.file_link);
 
+  const auth = getAuth(app);
+
+  // Declare variables outside the onAuthStateChanged callback to make them accessible in postData
+  let username = '';
+  let photoURL = '';
+  let email = '';
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("User is signed in:", user);
+      username = user.displayName;
+      photoURL = user.photoURL;
+      email = user.email;
+    } else {
+      console.log("User is not signed in");
+    }
+  });
+
   if (!post.file_link && !post.img && post.link) {
     // Create post content using post data
     if (post.username == localStorage.getItem("displayName")) {
@@ -292,7 +310,7 @@ function displayPost(postId, post) {
 
   else if (!post.file_link && !post.img && !post.link) {
     // Create post content using post data
-    if (post.username == user.displayName) {
+    if (post.username == username) {
       postDiv.innerHTML = `<div class="my-message">
     <img class="pfp" width="25px" height="25px"
         src="${post.photoURL}">
