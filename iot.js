@@ -763,7 +763,7 @@ function displayPost(postId, post) {
       </div>
     </div><br>`;
     }
-  }}, 500);
+  }}, 1500);
 
   document.getElementById("messages").appendChild(postDiv);
 
