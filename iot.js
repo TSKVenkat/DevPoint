@@ -159,7 +159,7 @@ document.getElementById("send-button").addEventListener('click', async function 
           console.log(postData)
           console.log(newPostRef)
           console.log("Post submitted successfully!");
-          set(newPostRef, postData);
+          await set(newPostRef, postData);
         }
 
       }
@@ -172,7 +172,7 @@ document.getElementById("send-button").addEventListener('click', async function 
         if (username && email) {
           const newPostRef = push(dbRef(database, 'iot/'));
           console.log("Post submitted successfully!");
-          set(newPostRef, postData);
+          await set(newPostRef, postData);
         }
       }
 
@@ -190,7 +190,7 @@ document.getElementById("send-button").addEventListener('click', async function 
         if (username && email) {
           const newPostRef = push(dbRef(database, 'iot/'));
           console.log("Post submitted successfully!");
-          set(newPostRef, postData);
+          await set(newPostRef, postData);
         }
 
       }
@@ -200,7 +200,7 @@ document.getElementById("send-button").addEventListener('click', async function 
         if (username && email) {
           const newPostRef = push(dbRef(database, 'iot/'));
           console.log("Post submitted successfully without a file!");
-          set(newPostRef, postData); // Save post to Firebase
+          await set(newPostRef, postData); // Save post to Firebase
         }
       }
 
