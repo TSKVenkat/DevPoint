@@ -101,27 +101,6 @@ window.addEventListener('click', (event) => {
     }
 });
 
-//POST FEATURE
-window.addEventListener('load', function () {
-    // Reference to the posts collection in Firebase
-    const postsRef = dbRef(database, 'Canvas');
-
-    // Listen for new and existing posts
-    onChildAdded(postsRef, (snapshot) => {
-        const post = snapshot.val();
-        console.log(post);
-        const postId = snapshot.key;
-        displayPost(postId, post); // Call function to display post
-    });
-
-    onChildChanged(postsRef, (snapshot) => {
-        const post = snapshot.val();
-        const postId = snapshot.key;
-        handleUpvote(postId, post.upvotes); // Update upvote count
-    });
-
-});
-
 //Uploading images
 async function imgupload(file) {
     const auth = getAuth(app);

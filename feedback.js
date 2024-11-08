@@ -51,6 +51,7 @@ d5.forEach(item => {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import { getDatabase, ref as dbRef, set, get, onChildAdded, push, onChildChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
 
 const firebaseConfig = {
@@ -108,33 +109,69 @@ async function imgupload(file) {
 }
 
 //POST FEATURE
-window.addEventListener('load', function () {
-    // Reference to the posts collection in Firebase
-    const postsRef = dbRef(database, 'Feedback');
+window.addEventListener('load', async function () {
+    try {
+        // Get the current user
+        const auth = getAuth(app);
+        const user = await getCurrentUser(auth);
 
-    // Listen for new and existing posts
-    onChildAdded(postsRef, (snapshot) => {
-        const post = snapshot.val();
-        console.log(post);
-        const postId = snapshot.key;
-        displayPost(postId, post); // Call function to display post
-    });
+        if (user) {
+            // Get a reference to the 'iot' node in the Firebase Database
+            const postsRef = dbRef(database, 'Feedback');
 
-    onChildChanged(postsRef, (snapshot) => {
-        const post = snapshot.val();
-        const postId = snapshot.key;
-        handleUpvote(postId, post.upvotes); // Update upvote count
-    });
+            // Listen for child added events to the 'iot' node
+            onChildAdded(postsRef, (snapshot) => {
+                const post = snapshot.val();
+                const postId = snapshot.key; // Get the ID of the new post
+                console.log(post);
+                if (post) {
+                    displayPost(postId, post);
+                }
+            }, (error) => {
+                console.error('Error fetching posts:', error);
+            });
 
+            onChildChanged(postsRef, (snapshot) => {
+                const post = snapshot.val();
+                const postId = snapshot.key;
+                if (post) {
+                    handleUpvote(postId, post.upvotes); // Update upvote count
+                }
+            }, (error) => {
+                console.error('Error fetching posts:', error);
+            });
+        } else {
+            console.log('User not authenticated');
+        }
+    } catch (error) {
+        console.error('Error getting current user:', error);
+    }
 });
+
+async function getCurrentUser(auth) {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                resolve(user);
+            } else {
+                reject(new Error("User not signed in"));
+            }
+        });
+    });
+}
 
 document.getElementById("Post").addEventListener('click', async function (e) {
 
     e.preventDefault();
 
-    const username = localStorage.getItem("displayName");
-    const photoURL = localStorage.getItem("photoURL");
-    const email = localStorage.getItem("email");
+    const auth = getAuth(app);
+    const user = await getCurrentUser(auth);
+
+    if(user){
+
+    const username = user.displayName;
+    const photoURL = user.photoURL;
+    const email = user.email;
     const title = document.getElementById('title').value;
     const desc = document.getElementById('desc').value;
     var link = document.getElementById('linkupload').value;
@@ -211,6 +248,10 @@ document.getElementById("Post").addEventListener('click', async function (e) {
             document.getElementById("desc").value = null;
         }
     }
+}else{
+    alert('user not authenticated')
+    window.location.href = "login.html";
+}
 
 });
 
@@ -219,7 +260,14 @@ document.getElementById("Post").addEventListener("click", () => {
 })
 
 // Function to display post
-function displayPost(postId, post) {
+async function displayPost(postId, post) {
+
+    const auth = getAuth(app);
+    const user = await getCurrentUser(auth);
+
+    if(user){
+
+
     const postDiv = document.createElement('div');
 
     console.log(post);
@@ -328,5 +376,9 @@ function displayPost(postId, post) {
     } else {
         console.error("Upvote button not found");
     }
+}else {
+    alert('user not authenticated')
+    window.location.href("login.html");
+}
 
 }
