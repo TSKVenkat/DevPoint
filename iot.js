@@ -763,9 +763,9 @@ function displayPost(postId, post) {
       </div>
     </div><br>`;
     }
-  }}, 1500);
+  }
 
-  document.getElementById("messages").appendChild(postDiv);
+  document.getElementById("messages").appendChild(postDiv);}, 1500);
 
 }
 
