@@ -113,6 +113,8 @@ window.addEventListener('load', function () {
 document.getElementById("send-button").addEventListener('click', async function (e) {
   e.preventDefault();
 
+  const auth = getAuth(app);
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       const username = localStorage.getItem("displayName");
@@ -228,6 +230,9 @@ function displayPost(postId, post) {
 
   console.log(post);
   console.log(post.file_link);
+  
+  const auth = getAuth(app);
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       if (!post.file_link && !post.img && post.link) {
