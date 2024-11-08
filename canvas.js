@@ -1,8 +1,8 @@
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
-    e.preventDefault();
-  }
+    if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
+        e.preventDefault();
+    }
 });
 
 const observer = new IntersectionObserver((entries) => {
@@ -67,17 +67,10 @@ window.addEventListener('click', (event) => {
     }
 });
 
-/* document.addEventListener('contextmenu', (e) => e.preventDefault());
-document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
-    e.preventDefault();
-  }
-}); */
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import { getDatabase, ref as dbRef, set, get, onChildAdded, push, onChildChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
-
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTUWEC7hhM0SY2IUM06KD9p473bNykKno",
@@ -108,31 +101,6 @@ window.addEventListener('click', (event) => {
     }
 });
 
-
-//Uploading images
-async function imgupload(file) {
-    // Validate that the file exists before using it
-    if (!file) {
-        console.error("File is undefined. Make sure a file is selected before uploading.");
-        return;
-    }
-
-    const uniqueName = `images/${Date.now()}-${file.name}`; // Add unique identifier
-    const storageref = storageRef(storage, uniqueName);
-
-    console.log(uniqueName);
-    console.log(storageref);
-
-    try {
-        await uploadBytes(storageref, file);  // Upload file
-        const url = await getDownloadURL(storageref);  // Get URL to access file
-        console.log(url);
-        return url;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 //POST FEATURE
 window.addEventListener('load', function () {
     // Reference to the posts collection in Firebase
@@ -154,77 +122,166 @@ window.addEventListener('load', function () {
 
 });
 
+//Uploading images
+async function imgupload(file) {
+    const auth = getAuth(app);
+    const user = auth.currentUser;
+
+    if (!user) {
+        console.log("User is not authenticated. Please log in.");
+        return null;
+    }
+
+    if (!file) {
+        console.error("File is undefined. Make sure a file is selected before uploading.");
+        return null;
+    }
+
+    const uniqueName = `images/${Date.now()}-${file.name}`; // Generate unique file name
+    const storageref = storageRef(storage, uniqueName);
+
+    try {
+        await uploadBytes(storageref, file);  // Upload file to Firebase Storage
+        const url = await getDownloadURL(storageref);  // Get URL to access file
+        console.log("File uploaded successfully. URL:", url);
+        return url;
+    } catch (error) {
+        console.error("Error uploading file:", error);
+        return null;
+    }
+}
+
+window.addEventListener('load', async function () {
+    try {
+        // Get the current user
+        const auth = getAuth(app);
+        const user = await getCurrentUser(auth);
+
+        if (user) {
+            // Get a reference to the 'iot' node in the Firebase Database
+            const postsRef = dbRef(database, 'CYS Chat');
+
+            // Listen for child added events to the 'iot' node
+            onChildAdded(postsRef, (snapshot) => {
+                const post = snapshot.val();
+                const postId = snapshot.key; // Get the ID of the new post
+                console.log(post);
+                if (post) {
+                    displayPost(postId, post);
+                }
+            }, (error) => {
+                console.error('Error fetching posts:', error);
+            });
+
+            onChildChanged(postsRef, (snapshot) => {
+                const post = snapshot.val();
+                const postId = snapshot.key;
+                if (post) {
+                    handleUpvote(postId, post.upvotes); // Update upvote count
+                }
+            }, (error) => {
+                console.error('Error fetching posts:', error);
+            });
+        } else {
+            console.log('User not authenticated');
+        }
+    } catch (error) {
+        console.error('Error getting current user:', error);
+    }
+});
+
+async function getCurrentUser(auth) {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                resolve(user);
+            } else {
+                reject(new Error("User not signed in"));
+            }
+        });
+    });
+}
+
 document.getElementById("Post").addEventListener('click', async function (e) {
 
     e.preventDefault();
 
-    const username = localStorage.getItem("displayName");
-    const photoURL = localStorage.getItem("photoURL");
-    const email = localStorage.getItem("email");
-    const title = document.getElementById('title').value;
-    const desc = document.getElementById('desc').value;
-    var link = document.getElementById('linkupload').value;
+    const auth = getAuth(app);
+    const user = await getCurrentUser(auth);
 
-    // Create the postData object
-    const postData = {
-        username,
-        photoURL,
-        email,
-        title,
-        desc,
-        link,
-        img: '',
-        upvotes: 0,
-        upvotedBy: []
-    };
+    if (user) {
 
-    var img = document.getElementById('imgupload').files[0];// Get the image from the input
+        const username = user.displayName;
+        const photoURL = user.photoURL;
+        const email = user.email;
+        const title = document.getElementById('title').value;
+        const desc = document.getElementById('desc').value;
+        var link = document.getElementById('linkupload').value;
 
-    console.log(img);
+        // Create the postData object
+        const postData = {
+            username,
+            photoURL,
+            email,
+            title,
+            desc,
+            link,
+            img: '',
+            upvotes: 0,
+            upvotedBy: []
+        };
+
+        var img = document.getElementById('imgupload').files[0];// Get the image from the input
+
+        console.log(img);
 
 
-    if (link && !img) {
+        if (link && !img) {
 
-        // Save post to Firebase after file upload is complete
-        if (username && email) {
-            const newPostRef = push(dbRef(database, 'Canvas/'));
-            console.log(postData)
-            console.log(newPostRef)
-            console.log("Post submitted successfully!");
-            set(newPostRef, postData);
+            // Save post to Firebase after file upload is complete
+            if (username && email) {
+                const newPostRef = push(dbRef(database, 'Canvas/'));
+                console.log(postData)
+                console.log(newPostRef)
+                console.log("Post submitted successfully!");
+                set(newPostRef, postData);
 
-            // Clear form inputs after posting
-            document.getElementById("title").value = null;
-            document.getElementById("imgupload").value = null;
-            document.getElementById("linkupload").value = null;
-            document.getElementById("desc").value = null;
+                // Clear form inputs after posting
+                document.getElementById("title").value = null;
+                document.getElementById("imgupload").value = null;
+                document.getElementById("linkupload").value = null;
+                document.getElementById("desc").value = null;
+            }
+
         }
 
-    }
+        else if (link && img) {
+            try {
+                postData.img = await imgupload(img);
+                console.log(postData.img);
 
-    else if (link && img) {
-        try {
-            postData.img = await imgupload(img);
-            console.log(postData.img);
+            } catch (error) { console.error(error); }
 
-        } catch (error) { console.error(error); }
+            // Save post to Firebase after file upload is complete
+            if (username && email) {
+                const newPostRef = push(dbRef(database, 'Canvas/'));
+                console.log("Post submitted successfully!");
+                set(newPostRef, postData);
 
-        // Save post to Firebase after file upload is complete
-        if (username && email) {
-            const newPostRef = push(dbRef(database, 'Canvas/'));
-            console.log("Post submitted successfully!");
-            set(newPostRef, postData);
+                // Clear form inputs after posting
+                document.getElementById("title").value = null;
+                document.getElementById("imgupload").value = null;
+                document.getElementById("linkupload").value = null;
+                document.getElementById("desc").value = null;
+            }
 
-            // Clear form inputs after posting
-            document.getElementById("title").value = null;
-            document.getElementById("imgupload").value = null;
-            document.getElementById("linkupload").value = null;
-            document.getElementById("desc").value = null;
         }
 
-    }
-
-    else{
+        else {
+        }
+    } else {
+        alert("User not authenticated");
+        window.location.href = 'login.html';
     }
 
 });
@@ -234,7 +291,11 @@ document.getElementById("Post").addEventListener("click", () => {
 })
 
 // Function to display post
-function displayPost(postId, post) {
+async function displayPost(postId, post) {
+    const auth = getAuth(app);
+    const user = await getCurrentUser(auth);
+
+    if(user){
     const postDiv = document.createElement('div');
 
     console.log(post);
@@ -327,6 +388,10 @@ function displayPost(postId, post) {
     } else {
         console.error("Upvote button not found");
     }
+}else{
+    alert("User not authenticated")
+    window.location.href='login.html';
+}
 
 }
 
