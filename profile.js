@@ -324,82 +324,92 @@ function safeSetValue(id, value) {
 }
 
 
-// Function to display user data and icons based on stored values
-async function displayUserData(user) {
+async function displayUserData() {
     try {
-        const snapshot = await get(child(ref(db), "users"));
-        if (snapshot.exists()) {
-            const res = snapshot.val();
-            for (let uid in res) {
-                if (localStorage.getItem("email") === res[uid].email) {
-                    // Set user info
-                    document.getElementById("bio").textContent = res[uid].bio || "";
-                    document.getElementById("msg").value = res[uid].bio || "";
-                    document.getElementById("name").textContent = user.displayName || "No Name";
-                    document.getElementById("email").textContent = user.email || "No Email";
-                    document.getElementById("uname").value = user.email || "snuc@gmail.com";
-                    document.getElementById("uemail").value = user.displayName || "No Name";
-                    document.getElementById("pfp").src = user.photoURL || "default-profile.png";
+        const user = auth.currentUser;
 
-                    // Clear previous icons and add new ones based on URLs
-                    document.getElementById("intlogo").innerHTML = "";
+        if (user) {
+            // Directly access the current user's data using their UID
+            const userRef = child(ref(db), `users/${user.uid}`);
+            const snapshot = await get(userRef);
 
-                    const socialMediaLinks = {
-                        github: res[uid].git,
-                        discord: res[uid].discord,
-                        linkedin: res[uid].linkedin,
-                        kaggle: res[uid].kaggle,
-                        instagram: res[uid].instagram,
-                        twitter: res[uid].twitter
-                    };
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
 
-                    for (let [id, url] of Object.entries(socialMediaLinks)) {
-                        if (url) {
-                            const inputId = `${id}-input`;
-                            safeSetValue(inputId, url); // Use safeSetValue to avoid null errors
-                            createSocialIcon(id, socialMediaIcons[id], inputId);
-                        }
+                // Set user info in the HTML
+                document.getElementById("bio").textContent = userData.bio || "";
+                document.getElementById("msg").value = userData.bio || "";
+                document.getElementById("name").textContent = user.displayName || "No Name";
+                document.getElementById("email").textContent = user.email || "No Email";
+                document.getElementById("uname").value = user.email || "snuc@gmail.com";
+                document.getElementById("uemail").value = user.displayName || "No Name";
+                document.getElementById("pfp").src = user.photoURL || "default-profile.png";
+
+                // Clear previous icons and add new ones based on URLs
+                document.getElementById("intlogo").innerHTML = "";
+
+                // Populate social media icons
+                const socialMediaLinks = {
+                    github: userData.git,
+                    discord: userData.discord,
+                    linkedin: userData.linkedin,
+                    kaggle: userData.kaggle,
+                    instagram: userData.instagram,
+                    twitter: userData.twitter
+                };
+
+                for (let [id, url] of Object.entries(socialMediaLinks)) {
+                    if (url) {
+                        const inputId = `${id}-input`;
+                        safeSetValue(inputId, url); // Use safeSetValue to avoid null errors
+                        createSocialIcon(id, socialMediaIcons[id], inputId);
                     }
-
-                    break;
                 }
+
+            } else {
+                console.log("No data available for this user");
             }
+        } else {
+            console.log("User not authenticated");
         }
+
     } catch (error) {
         console.error("Error fetching user data:", error);
     }
 }
 
+
 // Update user profile when clicking 'Update'
 document.getElementById("button").addEventListener("click", async () => {
     try {
         const user = auth.currentUser;
-        const snapshot = await get(child(ref(db), "users"));
-
-        if (snapshot.exists()) {
-            const res = snapshot.val();
-            for (let uid in res) {
-                if (localStorage.getItem("email") === res[uid].email) {
-                    const postData = {
-                        username: localStorage.getItem("displayName"),
-                        email: localStorage.getItem("email"),
-                        photoURL: localStorage.getItem("photoURL"),
-                        bio: document.getElementById("msg").value,
-                        git: document.getElementById("github-input").value || "",
-                        linkedin: document.getElementById("linkedin-input").value || "",
-                        discord: document.getElementById("discord-input").value || "",
-                        instagram: document.getElementById("instagram-input").value || "",
-                        twitter: document.getElementById("twitter-input").value || "",
-                        kaggle: document.getElementById("kaggle-input").value || ""
-                    };
-
-                    await update(ref(db, `users/${uid}`), postData);
-                    console.log("Profile updated successfully");
-                    displayUserData(user); // Refresh icons
-                    break;
-                }
-            }
+        if (!user) {
+            console.error("User is not authenticated.");
+            return;
         }
+
+        // Access the current user's data directly by their UID
+        const userId = user.uid;
+        const postData = {
+            username: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            bio: document.getElementById("msg").value,
+            git: document.getElementById("github-input").value || "",
+            linkedin: document.getElementById("linkedin-input").value || "",
+            discord: document.getElementById("discord-input").value || "",
+            instagram: document.getElementById("instagram-input").value || "",
+            twitter: document.getElementById("twitter-input").value || "",
+            kaggle: document.getElementById("kaggle-input").value || ""
+        };
+
+        // Update the user's profile data
+        await update(ref(db, `users/${userId}`), postData);
+        console.log("Profile updated successfully");
+
+        // Refresh icons or user data
+        displayUserData(user);
+
     } catch (error) {
         console.error("Error updating profile:", error);
     }
@@ -422,6 +432,6 @@ setPersistence(auth, browserLocalPersistence)
     .then(() => signInWithPopup(auth, provider))
     .catch((error) => console.error('Sign-in error:', error.message));
 
-document.getElementById("nxtbutton").addEventListener("click",()=>{
+document.getElementById("nxtbutton").addEventListener("click", () => {
     window.location.href = "posts.html";
 })

@@ -469,7 +469,8 @@ body {
     width: 200px;
     height: 50px;
     border-radius: 10px;
-    float: right;
+    position: relative;
+    left: 320px;
 }
 
 .filedisplay svg {

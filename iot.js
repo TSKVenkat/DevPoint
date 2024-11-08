@@ -6,7 +6,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-import { getDatabase, ref as dbRef, set, get, onChildAdded, push } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
+import { getDatabase, ref as dbRef, set, get, onChildAdded, onValue, push } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
 
@@ -41,203 +41,241 @@ window.addEventListener('click', (event) => {
 
 //FUNCTIONS
 async function fileupload(file) {
-  // Create file metadata
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+
+  if (!user) {
+    console.log("User is not authenticated. Please log in.");
+    return null;
+  }
+
+  if (!file) {
+    console.error("File is undefined. Make sure a file is selected before uploading.");
+    return null;
+  }
+
   const metadata = {
     contentType: file.type
   };
 
-  console.log('into file checking SUCCESS');
-  console.log(file.name);
-
-  // Create storage reference
-  const fileRef = storageRef(storage, `Files/${file.name}`);
+  const uniqueName = `Files/${Date.now()}-${file.name}`; // Generate unique file name
+  const storageref = storageRef(storage, uniqueName, metadata);
 
   try {
-    // Start the upload and wait for it to complete
-    const uploadSnapshot = await uploadBytesResumable(fileRef, file, metadata);
-    console.log('Upload complete! Getting download URL...');
-
-    // Get the download URL once the upload is complete
-    const downloadURL = await getDownloadURL(uploadSnapshot.ref);
-    console.log("File available at:", downloadURL);
-
-    // Return the URL so it can be used later
-    return downloadURL;
-
+    await uploadBytes(storageref, file);  // Upload file to Firebase Storage
+    const url = await getDownloadURL(storageref);  // Get URL to access file
+    console.log("File uploaded successfully. URL:", url);
+    return url;
   } catch (error) {
-    console.error("File upload failed:", error);
-    throw error; // Rethrow the error to handle it elsewhere if needed
+    console.error("Error uploading file:", error);
+    return null;
   }
 }
 
 
 //Uploading images
 async function imgupload(file) {
-  // Validate that the file exists before using it
-  if (!file) {
-    console.error("File is undefined. Make sure a file is selected before uploading.");
-    return;
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+
+  if (!user) {
+    console.log("User is not authenticated. Please log in.");
+    return null;
   }
 
-  const uniqueName = `images/${Date.now()}-${file.name}`; // Add unique identifier
+  if (!file) {
+    console.error("File is undefined. Make sure a file is selected before uploading.");
+    return null;
+  }
+
+  const uniqueName = `images/${Date.now()}-${file.name}`; // Generate unique file name
   const storageref = storageRef(storage, uniqueName);
 
-  console.log(uniqueName);
-  console.log(storageref);
-
   try {
-    await uploadBytes(storageref, file);  // Upload file
+    await uploadBytes(storageref, file);  // Upload file to Firebase Storage
     const url = await getDownloadURL(storageref);  // Get URL to access file
-    console.log(url);
+    console.log("File uploaded successfully. URL:", url);
     return url;
   } catch (error) {
-    console.error(error);
+    console.error("Error uploading file:", error);
+    return null;
   }
 }
 
-//POST FEATURE
-window.addEventListener('load', function () {
-  // Reference to the posts collection in Firebase
-  const postsRef = dbRef(database, 'iot');
+window.addEventListener('load', async function () {
+  try {
+    // Get the current user
+    const auth = getAuth(app);
+    const user = await getCurrentUser(auth);
 
-  // Listen for new and existing posts
-  onChildAdded(postsRef, (snapshot) => {
-    const post = snapshot.val();
-    console.log(post);
-    const postId = snapshot.key;
-    displayPost(postId, post); // Call function to display post
-  });
+    if (user) {
+      // Get a reference to the 'iot' node in the Firebase Database
+      const postsRef = dbRef(database, 'iot');
 
+      // Listen for child added events to the 'iot' node
+      onChildAdded(postsRef, (snapshot) => {
+        const post = snapshot.val();
+        const postId = snapshot.key; // Get the ID of the new post
+        console.log(post);
+        if (post) {
+          displayPost(postId, post);
+        }
+      }, (error) => {
+        console.error('Error fetching posts:', error);
+      });
+    } else {
+      console.log('User not authenticated');
+    }
+  } catch (error) {
+    console.error('Error getting current user:', error);
+  }
 });
+
 
 document.getElementById("send-button").addEventListener('click', async function (e) {
   e.preventDefault();
 
   const auth = getAuth(app);
+  const user = await getCurrentUser(auth);
 
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      const username = localStorage.getItem("displayName");
-      const photoURL = localStorage.getItem("photoURL");
-      const email = localStorage.getItem("email");
-      const content = document.getElementById('message-input').value;
-      var link = document.getElementById('linkupload').value;
+  if (user) {
+    console.log(user);
+    const username = user.displayName;
+    const photoURL = user.photoURL;
+    const email = user.email;
 
-      // Create the postData object
-      const postData = {
-        username,
-        photoURL,
-        email,
-        content,
-        link,
-        img: '',
-        file_link: '',
-        file_name: ''
-      };
+    console.log(user);
 
-      var file = document.getElementById("docupload").files[0]; // Get the file from the input
-      var img = document.getElementById('imgupload').files[0];// Get the image from the input
+    const content = document.getElementById('message-input').value;
+    var link = document.getElementById('linkupload').value;
 
-      console.log(img);
+    // Create the postData object
+    const postData = {
+      username,
+      photoURL,
+      email,
+      content,
+      link,
+      img: '',
+      file_link: '',
+      file_name: ''
+    };
 
-      console.log(file);
+    var file = document.getElementById("docupload").files[0]; // Get the file from the input
+    var img = document.getElementById('imgupload').files[0];// Get the image from the input
 
-      if (file && !img) {
-        var fname = file.name;
-        try {
-          postData.file_link = await fileupload(file);
-          postData.file_name = fname;
-          console.log("File uploaded successfully. Download URL:", url);
-          // Use the URL for further processing, e.g., saving it to the database
-        } catch (error) {
-          console.error("File upload failed:", error);
-        }
+    console.log(img);
 
-        // Save post to Firebase after file upload is complete
-        if (username && email) {
-          const newPostRef = push(dbRef(database, 'iot/'));
-          console.log(postData)
-          console.log(newPostRef)
-          console.log("Post submitted successfully!");
-          set(newPostRef, postData);
-        }
+    console.log(file);
 
+    if (file && !img) {
+      var fname = file.name;
+      try {
+        postData.file_link = await fileupload(file);
+        postData.file_name = fname;
+        console.log("File uploaded successfully. Download URL:", url);
+        // Use the URL for further processing, e.g., saving it to the database
+      } catch (error) {
+        console.error("File upload failed:", error);
       }
 
-      else if (!file && img) {
-        // Update postData with the image link and name after upload is successful
+      // Save post to Firebase after file upload is complete
+      if (username && email) {
+        const newPostRef = push(dbRef(database, 'iot/'));
+        console.log(postData)
+        console.log(newPostRef)
+        console.log("Post submitted successfully!");
+        set(newPostRef, postData);
+      }
+
+    }
+
+    else if (!file && img) {
+      // Update postData with the image link and name after upload is successful
+      postData.img = await imgupload(img);
+      console.log(postData.img);
+      // Save post to Firebase after file upload is complete
+      if (username && email) {
+        const newPostRef = push(dbRef(database, 'iot/'));
+        console.log("Post submitted successfully!");
+        set(newPostRef, postData);
+      }
+    }
+
+    else if (file && img) {
+      var fname = file.name;
+      try {
         postData.img = await imgupload(img);
         console.log(postData.img);
-        // Save post to Firebase after file upload is complete
-        if (username && email) {
-          const newPostRef = push(dbRef(database, 'iot/'));
-          console.log("Post submitted successfully!");
-          set(newPostRef, postData);
-        }
+        // Update postData with the file link and name after upload is successful
+        postData.file_link = await fileupload(file);
+        postData.file_name = fname;
+      } catch (error) { console.error(error); }
+
+      // Save post to Firebase after file upload is complete
+      if (username && email) {
+        const newPostRef = push(dbRef(database, 'iot/'));
+        console.log("Post submitted successfully!");
+        set(newPostRef, postData);
       }
 
-      else if (file && img) {
-        var fname = file.name;
-        try {
-          postData.img = await imgupload(img);
-          console.log(postData.img);
-          // Update postData with the file link and name after upload is successful
-          postData.file_link = await fileupload(file);
-          postData.file_name = fname;
-        } catch (error) { console.error(error); }
-
-        // Save post to Firebase after file upload is complete
-        if (username && email) {
-          const newPostRef = push(dbRef(database, 'iot/'));
-          console.log("Post submitted successfully!");
-          set(newPostRef, postData);
-        }
-
-      }
-
-      else {
-        // No file to upload, save post immediately
-        if (username && email) {
-          const newPostRef = push(dbRef(database, 'iot/'));
-          console.log("Post submitted successfully without a file!");
-          set(newPostRef, postData); // Save post to Firebase
-        }
-      }
-
-      // Clear form inputs after posting
-      document.getElementById("docupload").value = null;
-      document.getElementById("imgupload").value = null;
-      document.getElementById("linkupload").value = null;
-      document.getElementById("message-input").value = null;
     }
+
     else {
-      console.log("user not signed in");
-      alert("You're not Authenticated");
-      window.location.href = "login.html";
+      // No file to upload, save post immediately
+      if (username && email) {
+        const newPostRef = push(dbRef(database, 'iot/'));
+        console.log("Post submitted successfully without a file!");
+        set(newPostRef, postData); // Save post to Firebase
+      }
     }
-  })
 
-
+    // Clear form inputs after posting
+    document.getElementById("docupload").value = null;
+    document.getElementById("imgupload").value = null;
+    document.getElementById("linkupload").value = null;
+    document.getElementById("message-input").value = null;
+  }
+  else {
+    console.log("user not signed in");
+    alert("You're not Authenticated");
+    window.location.href = "login.html";
+  }
 });
+
+async function getCurrentUser(auth) {
+  return new Promise((resolve, reject) => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        resolve(user);
+      } else {
+        reject(new Error("User not signed in"));
+      }
+    });
+  });
+}
+
 
 document.getElementById("attach").addEventListener("click", () => {
   document.getElementById("popup").style.display = 'none';
 })
 
 // Function to display post
-function displayPost(postId, post) {
+async function displayPost(postId, post) {
   const postDiv = document.createElement('div');
 
   console.log(post);
   console.log(post.file_link);
-  
-  const auth = getAuth(app);
 
-  onAuthStateChanged(auth, async (user) => {
+  const auth = getAuth(app);
+  const user = await getCurrentUser(auth);
+  
     if (user) {
+
+      console.log(user);
       if (!post.file_link && !post.img && post.link) {
         // Create post content using post data
-        if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == user.displayName) {
           postDiv.innerHTML = `<div class="my-message">
         <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
@@ -264,7 +302,7 @@ function displayPost(postId, post) {
 
       else if (!post.file_link && post.img && !post.link) {
         // Create post content using post data
-        if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == user.displayName) {
           postDiv.innerHTML = `<div class="my-message">
         <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
@@ -291,7 +329,7 @@ function displayPost(postId, post) {
 
       else if (!post.file_link && !post.img && !post.link) {
         // Create post content using post data
-        if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == user.displayName) {
           postDiv.innerHTML = `<div class="my-message">
         <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
@@ -342,7 +380,7 @@ function displayPost(postId, post) {
 
       else if (!post.img && post.file_link && !post.link) {
 
-        if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == user.displayName) {
 
           postDiv.innerHTML = `<div class="my-message">
           <img class="pfp" width="25px" height="25px"
@@ -438,7 +476,7 @@ function displayPost(postId, post) {
       }
 
       else if (post.file_link && post.img && !post.link) {
-        if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == user.displayName) {
           postDiv.innerHTML = `<div class="my-message">
           <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
@@ -537,7 +575,7 @@ function displayPost(postId, post) {
       }
 
       else if (!post.img && post.link && post.file_link) {
-        if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == user.displayName) {
           postDiv.innerHTML = `<div class="my-message">
           <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
@@ -645,7 +683,7 @@ function displayPost(postId, post) {
         }
 
         // Create post content using post data
-        if (post.username == localStorage.getItem("displayName")) {
+        if (post.username == user.displayName) {
           postDiv.innerHTML = `<div class="my-message">
           <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
@@ -745,7 +783,10 @@ function displayPost(postId, post) {
         }
       }
     }
-  })
+    else {
+      console.log('User not authenticated');
+    }
+
 
   document.getElementById("messages").appendChild(postDiv);
 

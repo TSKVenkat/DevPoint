@@ -27,7 +27,7 @@ const db = getDatabase(app);
 const provider = new GoogleAuthProvider();
 
 // Function to check if the email exists in the "users" node
-async function checkUserEmailExists(email) {
+/* async function checkUserEmailExists(email) {
     const dbRef = ref(db);
     try {
         const snapshot = await get(child(dbRef, "users"));
@@ -49,7 +49,7 @@ async function checkUserEmailExists(email) {
         console.error("Error checking user email:", error);
         return false;
     }
-}
+} */
 
 // Google Sign-in and email check
 document.getElementById("authbutton").addEventListener("click", () => {
@@ -57,13 +57,20 @@ document.getElementById("authbutton").addEventListener("click", () => {
         .then(async (result) => {
             const user = result.user;
 
-            const exists = await checkUserEmailExists(user.email);
-            if (exists) {
-                // User exists, redirect to posts.html
-                localStorage.setItem("photoURL", user.photoURL);
-                localStorage.setItem("displayName", user.displayName);
-                localStorage.setItem("email", user.email);
-                window.location.href = "posts.html";
+            if (user) {
+                // Directly access the current user's data using their UID
+                const userRef = child(ref(db), `users/${user.uid}`);
+                try {
+                    const snapshot = await get(userRef);
+
+                    if (snapshot.exists()) {
+                        // User exists, redirect to posts.html
+                        localStorage.setItem("photoURL", user.photoURL);
+                        localStorage.setItem("displayName", user.displayName);
+                        localStorage.setItem("email", user.email);
+                        window.location.href = "posts.html";
+                    }
+                } catch (error) { console.error(error); }
             } else {
 
                 try {
