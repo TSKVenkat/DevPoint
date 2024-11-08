@@ -159,7 +159,7 @@ window.addEventListener('load', async function () {
 
         if (user) {
             // Get a reference to the 'iot' node in the Firebase Database
-            const postsRef = dbRef(database, 'CYS Chat');
+            const postsRef = dbRef(database, 'Canvas');
 
             // Listen for child added events to the 'iot' node
             onChildAdded(postsRef, (snapshot) => {
