@@ -8,6 +8,20 @@ document.addEventListener('keydown', (e) => {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
 import { getDatabase, ref as dbRef, set, get, onChildAdded, push } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js";
 import { getStorage, ref as storageRef, uploadBytesResumable, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js";
+
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, proceed with actions that require authentication
+    console.log("User is signed in:", user);
+  } else {
+    // User is not signed in, you can redirect to login page or show a sign-in prompt
+    console.log("User is not signed in");
+  }
+});
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTUWEC7hhM0SY2IUM06KD9p473bNykKno",
