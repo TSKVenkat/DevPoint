@@ -348,7 +348,7 @@ async function displayPost(postId, post) {
         const postRef = dbRef(database, `Feedback/${postId}`);
         get(postRef).then((snapshot) => {
             const postData = snapshot.val();
-            const username = localStorage.getItem("displayName");
+            const username = user.displayName;
 
             if (!postData.upvotedBy) {
                 postData.upvotedBy = [];

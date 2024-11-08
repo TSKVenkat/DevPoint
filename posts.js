@@ -202,7 +202,7 @@ reportButton.addEventListener('click', () => {
         const message = reportinput.value;
         if (message) {
             const newMessageRef = push(reportsRef);
-            set(newMessageRef, { username: localStorage.getItem("displayName"), email: localStorage.getItem("email"), report: message });
+            set(newMessageRef, { username: user.displayName, email: user.email, report: message });
             sendReport(message);
         }
     }
@@ -806,7 +806,7 @@ function displayPost(postId, post) {
                 const postRef = dbRef(database, `posts/${postId}`);
                 get(postRef).then((snapshot) => {
                     const postData = snapshot.val();
-                    const username = localStorage.getItem("displayName");
+                    const username = user.displayName;
 
                     if (!postData.upvotedBy) {
                         postData.upvotedBy = [];

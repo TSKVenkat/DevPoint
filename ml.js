@@ -352,7 +352,7 @@ async function displayPost(postId, post) {
     }
 
     else if (!post.file_link && post.img && post.link) {
-      if (post.username == localStorage.getItem("displayName")) {
+      if (post.username == user.displayName) {
         postDiv.innerHTML = `<div class="my-message">
         <img class="pfp" width="25px" height="25px"
             src="${post.photoURL}">
