@@ -6,7 +6,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup,signInWithRedirect } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
 // Your web app's Firebase configuration
@@ -29,7 +29,7 @@ const provider = new GoogleAuthProvider();
 
 // Google Sign-in and email check
 document.getElementById("authbutton").addEventListener("click", () => {
-    const popupWindow = signInWithPopup(auth, provider)
+    const popupWindow = signInWithRedirect(auth, provider)
         .then(async (result) => {
             const user = result.user;
 
