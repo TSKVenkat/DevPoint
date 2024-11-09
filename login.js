@@ -9,15 +9,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/fireba
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
-// Firebase configuration (replace this with your own Firebase config)
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDCNLhGx34vw-aOTgKjTHZbbCpvHsi73Mc",
-    authDomain: "devpoint-a1fa4.firebaseapp.com",
-    databaseURL: "https://devpoint-a1fa4-default-rtdb.firebaseio.com",
-    projectId: "devpoint-a1fa4",
-    storageBucket: "devpoint-a1fa4.appspot.com",
-    messagingSenderId: "471801952491",
-    appId: "1:471801952491:web:f776b75d39f29a8b5766ae"
+  apiKey: "AIzaSyBMcMA6yY0E0bvrQxMtUUFw6otj7fhAalk",
+  authDomain: "devpoint-a715e.firebaseapp.com",
+  projectId: "devpoint-a715e",
+  storageBucket: "devpoint-a715e.firebasestorage.app",
+  messagingSenderId: "695340495283",
+  appId: "1:695340495283:web:55ae38f54ebddc7b439bc6",
+  measurementId: "G-68NZ9VHJX7"
 };
 
 // Initialize Firebase
@@ -25,31 +26,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 const provider = new GoogleAuthProvider();
-
-// Function to check if the email exists in the "users" node
-/* async function checkUserEmailExists(email) {
-    const dbRef = ref(db);
-    try {
-        const snapshot = await get(child(dbRef, "users"));
-        if (snapshot.exists()) {
-            const users = snapshot.val();
-            for (let userId in users) {
-                if (users[userId].email === email) {
-                    console.log("User exists:", users[userId]);
-                    return true;
-                }
-            }
-            console.log("User not found.");
-            return false;
-        } else {
-            console.log("No users found.");
-            return false;
-        }
-    } catch (error) {
-        console.error("Error checking user email:", error);
-        return false;
-    }
-} */
 
 // Google Sign-in and email check
 document.getElementById("authbutton").addEventListener("click", () => {
@@ -74,8 +50,8 @@ document.getElementById("authbutton").addEventListener("click", () => {
                             window.location.href = "posts.html";
                         }
                     }
-                } catch (error) {
-                    console.error(error);
+                } catch (error) { 
+                    console.error(error); 
                 }
             } else {
                 try {
@@ -116,5 +92,5 @@ document.getElementById("authbutton").addEventListener("click", () => {
             clearInterval(checkPopupClosed);
             alert("The authentication window was closed. Please try signing in again.");
         }
-    }, 500);
+    }, 3000);
 });
