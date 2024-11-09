@@ -27,16 +27,12 @@ const db = getDatabase(app);
 const provider = new GoogleAuthProvider();
 
 document.getElementById("authbutton").addEventListener("click", () => {
-    signInWithRedirect(auth, provider);
-});
-
-// After redirect, handle the sign-in result
-getRedirectResult(auth)
-    .then(async (result) => {
-        if (result) {
+    signInWithPopup(auth, provider)
+        .then(async (result) => {
             const user = result.user;
 
             if (user) {
+                // Directly access the current user's data using their UID
                 const userRef = child(ref(db), `users/${user.uid}`);
                 try {
                     const snapshot = await get(userRef);
@@ -71,9 +67,9 @@ getRedirectResult(auth)
                     console.error("Error accessing user data:", error);
                 }
             }
-        }
-    })
-    .catch((error) => {
-        console.error("Error during sign-in redirect:", error.code, error.message);
-        alert("Sign-in failed: " + error.message);
-    });
+        })
+        .catch((error) => {
+            console.error("Error during sign-in:", error.code, error.message);
+            alert("Sign-in failed: " + error.message);
+        });
+});
