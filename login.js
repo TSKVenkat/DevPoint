@@ -18,7 +18,7 @@ const firebaseConfig = {
     storageBucket: "devpoint-a1fa4.appspot.com",
     messagingSenderId: "471801952491",
     appId: "1:471801952491:web:f776b75d39f29a8b5766ae"
-  };
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -53,7 +53,7 @@ const provider = new GoogleAuthProvider();
 
 // Google Sign-in and email check
 document.getElementById("authbutton").addEventListener("click", () => {
-    signInWithPopup(auth, provider)
+    const popupWindow = signInWithPopup(auth, provider)
         .then(async (result) => {
             const user = result.user;
 
@@ -68,11 +68,16 @@ document.getElementById("authbutton").addEventListener("click", () => {
                         localStorage.setItem("photoURL", user.photoURL);
                         localStorage.setItem("displayName", user.displayName);
                         localStorage.setItem("email", user.email);
-                        window.location.href = "posts.html";
-                    }
-                } catch (error) { console.error(error); }
-            } else {
 
+                        // Check if popup window is closed before redirecting
+                        if (!popupWindow.closed) {
+                            window.location.href = "posts.html";
+                        }
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
                 try {
                     await set(ref(db, `users/${user.uid}`), {
                         username: user.displayName,
@@ -89,8 +94,12 @@ document.getElementById("authbutton").addEventListener("click", () => {
                     localStorage.setItem("photoURL", user.photoURL);
                     localStorage.setItem("displayName", user.displayName);
                     localStorage.setItem("email", user.email);
-                    console.log("User information saved successfully:",);
-                    window.location.href = "profile.html";
+                    console.log("User information saved successfully");
+
+                    // Check if popup window is closed before redirecting
+                    if (!popupWindow.closed) {
+                        window.location.href = "profile.html";
+                    }
                 } catch (error) {
                     console.error("Error saving user information:", error);
                 }
@@ -100,4 +109,12 @@ document.getElementById("authbutton").addEventListener("click", () => {
             console.error("Error during sign-in:", error.code, error.message);
             alert("Sign-in failed: " + error.message);
         });
+
+    // Check every 500ms if the popup window has been closed
+    const checkPopupClosed = setInterval(() => {
+        if (popupWindow.closed) {
+            clearInterval(checkPopupClosed);
+            alert("The authentication window was closed. Please try signing in again.");
+        }
+    }, 500);
 });
