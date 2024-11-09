@@ -311,7 +311,7 @@
 }
 
 /* Set blank screen for smaller devices */
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
     body {
         display: none;
     }
