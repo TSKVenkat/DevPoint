@@ -449,7 +449,7 @@
     }
 }
 
-@media screen and (min-width: 800px) and (max-width: 1200px) {
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
     html {
         background-image: linear-gradient(to right, rgb(11, 73, 207), rgb(1, 31, 73), rgb(11, 73, 207));
         opacity: 0.95;
