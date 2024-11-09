@@ -796,8 +796,8 @@ document.getElementById("web").addEventListener("click", () => {
   window.location.href = "web.html";
 })
 
-document.getElementById("ml").addEventListener("click", () => {
-  window.location.href = "ml.html";
+document.getElementById("iot").addEventListener("click", () => {
+  window.location.href = "iot.html";
 })
 
 document.getElementById("cys").addEventListener("click", () => {

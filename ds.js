@@ -808,6 +808,6 @@ document.getElementById("gd").addEventListener("click", () => {
   window.location.href = "gd.html";
 })
 
-document.getElementById("ds").addEventListener("click", () => {
-  window.location.href = "ds.html";
+document.getElementById("iot").addEventListener("click", () => {
+  window.location.href = "iot.html";
 })

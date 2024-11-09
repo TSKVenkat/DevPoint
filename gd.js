@@ -804,8 +804,8 @@ document.getElementById("cys").addEventListener("click", () => {
   window.location.href = "cys.html";
 })
 
-document.getElementById("gd").addEventListener("click", () => {
-  window.location.href = "gd.html";
+document.getElementById("iot").addEventListener("click", () => {
+  window.location.href = "iot.html";
 })
 
 document.getElementById("ds").addEventListener("click", () => {

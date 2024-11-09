@@ -792,8 +792,8 @@ async function displayPost(postId, post) {
 
 }
 
-document.getElementById("web").addEventListener("click", () => {
-  window.location.href = "web.html";
+document.getElementById("iot").addEventListener("click", () => {
+  window.location.href = "iot.html";
 })
 
 document.getElementById("ml").addEventListener("click", () => {
