@@ -20,8 +20,7 @@ const firebaseConfig = {
     storageBucket: "devpoint-a1fa4.appspot.com",
     messagingSenderId: "471801952491",
     appId: "1:471801952491:web:f776b75d39f29a8b5766ae"
-  };
-
+};
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
