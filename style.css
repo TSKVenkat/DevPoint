@@ -214,7 +214,6 @@
         height: 100px;
         position: absolute;
         top: 2400px;
-        opacity: 0;
         animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
     }
 
