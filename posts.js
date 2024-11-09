@@ -5,23 +5,28 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getDatabase, ref as dbRef, set, get, onChildAdded, push, onChildChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
-import { getStorage, ref as storageRef, uploadBytesResumable, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getDatabase, ref as dbRef, set, get, onChildAdded, push, onChildChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytesResumable, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-analytics.js";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCTUWEC7hhM0SY2IUM06KD9p473bNykKno",
-    authDomain: "web-chat-7ff42.firebaseapp.com",
-    projectId: "web-chat-7ff42",
-    storageBucket: "web-chat-7ff42.appspot.com",
-    messagingSenderId: "605843374216",
-    appId: "1:605843374216:web:ed5d13ebab206431bedf3d",
-    measurementId: "G-JJ9BLC1NYG"
-};
+    apiKey: "AIzaSyDCNLhGx34vw-aOTgKjTHZbbCpvHsi73Mc",
+    authDomain: "devpoint-a1fa4.firebaseapp.com",
+    databaseURL: "https://devpoint-a1fa4-default-rtdb.firebaseio.com",
+    projectId: "devpoint-a1fa4",
+    storageBucket: "devpoint-a1fa4.appspot.com",
+    messagingSenderId: "471801952491",
+    appId: "1:471801952491:web:f776b75d39f29a8b5766ae"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+console.log(analytics);
 
 if (!app) {
     console.error("Firebase app was not initialized properly.");
