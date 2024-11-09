@@ -1,3 +1,454 @@
+@media screen and (min-width: 320px) and (max-width: 992px) {
+    html {
+        background-image: linear-gradient(to right, rgb(11, 73, 207), rgb(1, 31, 73), rgb(11, 73, 207));
+        opacity: 0.95;
+    }
+
+    .DevPoint {
+        position: absolute;
+        top: 80px;
+        left: 200px;
+        animation: fade;
+        animation-duration: 5s;
+        display: 'none';
+    }
+
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+
+    .wrap {
+        background-color: #f2f2f2;
+        height: 10px;
+        width: 400px;
+        margin: 0 auto;
+        position: relative;
+        top: 600px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        display: 'none';
+    }
+
+    .wrap div {
+        background-color: #ffcc00;
+        height: 10px;
+        width: 0%;
+        border-radius: 5px;
+        animation: loadbar 3s;
+        -webkit-animation: loadbar 3s;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+        display: 'none';
+    }
+
+    @-webkit-keyframes loadbar {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+
+    @keyframes loadbar {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+
+    .div1 {
+        background-color: #ffcc001a;
+        backdrop-filter: blur(2px);
+        width: 1500px;
+        height: 300px;
+        border-radius: 10px;
+        position: absolute;
+        top: 800px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease-out;
+        display: flex;
+        flex-direction: row;
+        display: 'none';
+    }
+
+    .div1.visible {
+        opacity: 1;
+        transform: translateY(0);
+        display: 'none';
+    }
+
+    @keyframes slide-up-opacity {
+        0% {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes appear {
+        from {
+            clip-path: inset(0 0 0 0);
+            opacity: 0;
+        }
+
+        to {
+            clip-path: inset(100% 100% 0 0);
+            opacity: 1;
+        }
+    }
+
+    img {
+        width: auto;
+        height: 300px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        display: 'none';
+    }
+
+
+    #p1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 120px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        position: absolute;
+        top: 150px;
+        left: 380px;
+        animation: fade;
+        animation-duration: 5s;
+        display: 'none';
+
+        /*background-image: url("://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWgyM2V3dmlrNWt2ZnN4NmRqcGVwb25kZDJ6dzEzMnlsaHo5cGltMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2SYpZ92iLQsF6QZl5u/giphy.gif");
+    background-size: cover;
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;*/
+    }
+
+    #p {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+        font-size: 150px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        top: 150px;
+        /*background-image: url("://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWgyM2V3dmlrNWt2ZnN4NmRqcGVwb25kZDJ6dzEzMnlsaHo5cGltMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2SYpZ92iLQsF6QZl5u/giphy.gif");
+    background-size: cover;
+    color: transparent;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;*/
+    display: 'none';
+    }
+
+    .slideanim {
+        visibility: hidden;
+        visibility: visible\9;
+        /*For old IE browsers IE6-8 */
+        display: 'none';
+    }
+
+    .slideanim.slide {
+        visibility: visible;
+        animation: slide 1s;
+    }
+
+    .slideanim::after {
+        /* useful when its child elements are float:left; */
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    @keyframes slide {
+        0% {
+            opacity: 0;
+            transform: translateY(50%);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    p {
+        font-family: "Poppins", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        margin: 10px 30px 0 0;
+        padding: 40px;
+        text-align: left;
+        display: 'none';
+    }
+
+    .div2 {
+        background-color: #ffcc001a;
+        backdrop-filter: blur(2px);
+        width: 1500px;
+        height: 500px;
+        border-radius: 10px;
+        position: absolute;
+        top: 1200px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease-out;
+        flex-direction: row;
+        display: 'none';
+    }
+
+    .div2.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    #t1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 18px;
+        color: rgb(255, 255, 255);
+        margin-right: 240px;
+        display: 'none';
+    }
+
+    #img2 {
+        position: absolute;
+        top: 40px;
+        right: 0px;
+        height: 460px;
+        width: auto;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 0px;
+        display: 'none';
+    }
+
+    #img3 {
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        height: 460px;
+        width: auto;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 0px;
+        display: 'none';
+    }
+
+    #sd1 {
+        width: 500px;
+        height: 40px;
+        border-top-left-radius: 10px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        display: 'none';
+
+    }
+
+    .sd :hover {
+        backdrop-filter: blur(1px);
+    }
+
+
+
+    #sd2 {
+        width: 500px;
+        background-color: #ffcc001a;
+        height: 40px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        display: 'none';
+    }
+
+    #sd4 {
+        width: 500px;
+        background-color: #ffcc001a;
+        height: 40px;
+        border-top-right-radius: 10px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        display: 'none';
+    }
+
+    .sd {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    i {
+        color: #ffcc00;
+    }
+
+    .footer {
+        background-color: #ffffff2b;
+        backdrop-filter: blur(25px);
+        width: 1500px;
+        height: 100px;
+        position: absolute;
+        left: 0px;
+        top: 2400px;
+        opacity: 0;
+        animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+        width: 100%;
+        display: 'none';
+    }
+
+    .dev {
+        text-align: center;
+        color: whitesmoke;
+        font-family: "Poppins", sans-serif;
+        font-size: 26px;
+        font-weight: bold;
+        position: absolute;
+        top: -40px;
+        left: 610px;
+        display: 'none';
+    }
+
+    #insta {
+        text-align: center;
+        color: #ffb300;
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 18px;
+        font-variation-settings:
+            "ELGR" 1,
+            "ELSH" 2;
+        position: absolute;
+        bottom: 20px;
+        left: 690px;
+        display: 'none';
+    }
+
+    #insta :hover {
+        color: #f4f3f0;
+    }
+
+    #insta_icon {
+        position: absolute;
+        bottom: 22px;
+        left: 665px;
+        display: 'none';
+
+    }
+
+    .loginlink {
+        background-color: yellow;
+        width: 125px;
+        height: 50px;
+        position: absolute;
+        left: 700px;
+        border-radius: 5px;
+        border: 0px;
+        color: rgb(11, 73, 207);
+        font-family: "Poppins", sans-serif;
+        font-size: 25px;
+        text-align: center;
+        font-weight: bold;
+        display: none;
+        display: 'none';
+    }
+
+    .loginlink:hover {
+        transform: scale(1.1);
+        transition: 0.5s all ease-in;
+        background-color: rgb(11, 73, 207);
+        color: yellow;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    }
+
+    .tools {
+        position: absolute;
+        top: 1750px;
+        left: 450px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease-out;
+        animation: rotation 20s infinite linear;
+        display: 'none';
+    }
+
+    .tools-text {
+        position: absolute;
+        top: 2000px;
+        left: 580px;
+        font-family: "Gotham", sans-serif;
+        font-size: 30px;
+        font-weight: 600;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease-out;
+        display: 'none';
+    }
+
+    .tools.visible {
+        opacity: 1;
+        transform: translate(0px);
+    }
+
+    .tools-text.visible {
+        opacity: 1;
+        transform: translate(0px);
+    }
+
+    @keyframes rotation {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
 @media screen and (min-width: 992px) and (max-width: 1200px) {
     html {
         background-image: linear-gradient(to right, rgb(11, 73, 207), rgb(1, 31, 73), rgb(11, 73, 207));
