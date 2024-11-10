@@ -318,6 +318,10 @@
         opacity: 0.95;
     }
 
+    body{
+        display: none;
+    }
+
     .DevPoint {
         position: absolute;
         top: 80px;
