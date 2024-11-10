@@ -59,7 +59,7 @@ document.getElementById("sd2").onclick = function () {
     document.getElementById("sd1").style.backgroundColor = "#ffcc001a";
     document.getElementById("sd4").style.backgroundColor = "#ffcc001a";
     document.getElementById("img2").src = "";
-    document.getElementById("img3").src = "https://i.pinimg.com/564x/48/1b/2a/481b2a6fb860882fcb91e29cf2795a26.jpg";
+    document.getElementById("img3").src = "https://firebasestorage.googleapis.com/v0/b/devpoint-a1fa4.appspot.com/o/images%2F1731246223909-Get%20started.png?alt=media&token=6c851474-2859-4be7-afe0-6772cb155ada";
     document.getElementById("t1").innerHTML = `
 I developed <strong>Devpoint</strong> because, as a student myself, I know how hard it can be to find the right resources when you're trying to learn new skills like Machine Learning, Web Development, or other domains of computer science. A lot of times, you spend hours searching for the best tutorials or guides, and even then, it’s hard to know if what you found is actually useful.
 
@@ -80,7 +80,7 @@ document.getElementById("sd1").onclick = function () {
     document.getElementById("sd2").style.backgroundColor = "#ffcc001a";
     document.getElementById("sd4").style.backgroundColor = "#ffcc001a";
     document.getElementById("img3").src = "";
-    document.getElementById("img2").src = "https://i.pinimg.com/736x/7f/7b/0c/7f7b0c9bf14ae9b769705a071dfb6dd0.jpg";
+    document.getElementById("img2").src = "https://firebasestorage.googleapis.com/v0/b/devpoint-a1fa4.appspot.com/o/images%2F1731245804199-Get%20started.png?alt=media&token=2f2ec2f1-5744-4477-84ba-ceba7bdc1b32";
     /*document.getElementById("t1").textContent = `At its core, Devpoint is a community platform where users can sign up to share and discover valuable resources in the field of computer science, covering topics like competitive programming, web development, and more. Once registered, users can create posts similar to tweets, sharing links, tutorials, articles, or insights they find helpful. These posts can then be upvoted by others, allowing the best and most useful content to rise to the top.
 
 What makes Devpoint unique is its open, collaborative nature. Anyone with an account can both access and contribute resources, creating a vast pool of knowledge that's easily searchable and peer-reviewed. This model ensures that learning isn't just limited to what you can find through traditional channels, but can come directly from fellow learners and professionals in the field.
