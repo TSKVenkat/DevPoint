@@ -665,7 +665,7 @@ function displayPost(postId, post) {
                 </svg>
                 <div id="sd"><a class="docurl" href="${post.file_link}" target="_blank">${fname}</a>
                     <div></div>
-                    <span class="timestamp">${formattedDate}</span><br><br>
+                    <span class="timestamp-file">${formattedDate}</span><br><br>
                     <button class="upvote-btn-file" data-post-id="${postId}">Upvote</button>
                     <span class="upvote-count-file"> • ${post.upvotes || 0}</span>
                 </div>
