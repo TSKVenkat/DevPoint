@@ -1,9 +1,97 @@
-/* Apply styles only on laptops and desktops */
-@media (min-width: 1024px) {
+@media (max-width: 1023px) {
+    body {
+        background-image: linear-gradient(to right, rgb(11, 73, 207), rgb(1, 31, 73), rgb(11, 73, 207));
+        opacity: 1;
+    }
+
+    .layout-msg {
+        text-align: center;
+        font-family: "Poppins";
+        font-size: 30px;
+        width: 500px;
+        color: #e9d900;
+        position: relative;
+        top: 500px;
+        left: 250px;
+    }
+
+    .DevPoint {
+        display: none;
+    }
+
+    .wrap {
+        display: none;
+    }
+
+    .div1 {
+        display: none;
+    }
+
+    #p1 {
+        display: none;
+    }
+
+    #p {
+        display: none;
+    }
+
+    .slideanim {
+        display: none;
+    }
+
+    .div2 {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .dev {
+        display: none;
+    }
+
+    #insta {
+        text-align: center;
+        color: #ffb300;
+        text-decoration: none;
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        position: absolute;
+        bottom: 20px;
+        left: 690px;
+        display: none;
+    }
+
+    #insta_icon {
+        position: absolute;
+        bottom: 22px;
+        left: 665px;
+        display: none;
+    }
+
+    .loginlink {
+        display: none;
+    }
+
+    .tools {
+        display: none;
+    }
+
+    .tools-text {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1024px) {
 
     html {
         background-image: linear-gradient(to right, rgb(11, 73, 207), rgb(1, 31, 73), rgb(11, 73, 207));
         opacity: 0.95;
+    }
+
+    .layout-msg {
+        display: none;
     }
 
     .DevPoint {
@@ -311,14 +399,15 @@
     }
 }
 
-/* Set blank screen for smaller devices */
-@media (max-width: 768px) {
+/* Apply styles only on laptops and desktops */
+@media screen and (min-width: 1088px) {
+
     html {
         background-image: linear-gradient(to right, rgb(11, 73, 207), rgb(1, 31, 73), rgb(11, 73, 207));
         opacity: 0.95;
     }
 
-    body{
+    .layout-msg {
         display: none;
     }
 
@@ -328,7 +417,6 @@
         left: 200px;
         animation: fade;
         animation-duration: 5s;
-        display: none;
     }
 
     @keyframes fade {
@@ -350,7 +438,6 @@
         top: 600px;
         margin-bottom: 20px;
         border-radius: 5px;
-        display: none;
     }
 
     .wrap div {
@@ -384,17 +471,18 @@
         transition: all 0.6s ease-out;
         display: flex;
         flex-direction: row;
-        display: none;
     }
 
     .div1.visible {
         opacity: 1;
         transform: translateY(0);
-        display: none;
     }
 
     img {
-        display: none;
+        width: auto;
+        height: 300px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
     }
 
     #p1 {
@@ -410,7 +498,6 @@
         top: 150px;
         left: 380px;
         animation: fade 5s;
-        display: none;
     }
 
     #p {
@@ -423,13 +510,11 @@
         justify-content: center;
         position: absolute;
         top: 150px;
-        display: none;
     }
 
     .slideanim {
         visibility: hidden;
         visibility: visible\9;
-        display: none;
     }
 
     .slideanim.slide {
@@ -457,7 +542,6 @@
         margin: 10px 30px 0 0;
         padding: 40px;
         text-align: left;
-        display: none;
     }
 
     .div2 {
@@ -472,7 +556,6 @@
         transform: translateY(50px);
         transition: all 0.6s ease-out;
         flex-direction: row;
-        display: none;
     }
 
     .div2.visible {
@@ -486,7 +569,6 @@
         font-size: 18px;
         color: rgb(255, 255, 255);
         margin-right: 240px;
-        display: none;
     }
 
     #img2 {
@@ -496,7 +578,6 @@
         height: 460px;
         width: auto;
         border-bottom-right-radius: 10px;
-        display: none;
     }
 
     #img3 {
@@ -506,7 +587,6 @@
         height: 460px;
         width: auto;
         border-bottom-left-radius: 10px;
-        display: none;
     }
 
     #sd1,
@@ -520,14 +600,12 @@
         font-size: 25px;
         color: rgb(255, 255, 255);
         text-align: center;
-        display: none;
     }
 
     .sd {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        display: none;
     }
 
     i {
@@ -542,7 +620,6 @@
         position: absolute;
         top: 2400px;
         animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
-        display: none;
     }
 
     .dev {
@@ -554,7 +631,6 @@
         position: absolute;
         top: -40px;
         left: 610px;
-        display: none;
     }
 
     #insta {
@@ -566,7 +642,6 @@
         position: absolute;
         bottom: 20px;
         left: 690px;
-        display: none;
     }
 
     #insta:hover {
@@ -577,7 +652,6 @@
         position: absolute;
         bottom: 22px;
         left: 665px;
-        display: none;
     }
 
     .loginlink {
@@ -611,7 +685,6 @@
         transform: translateY(50px);
         transition: all 0.6s ease-out;
         animation: rotation 20s infinite linear;
-        display: none;
     }
 
     .tools-text {
@@ -624,7 +697,6 @@
         opacity: 0;
         transform: translateY(50px);
         transition: all 0.6s ease-out;
-        display: none;
     }
 
     .tools.visible,
@@ -642,4 +714,4 @@
             transform: rotate(360deg);
         }
     }
-}    
+}

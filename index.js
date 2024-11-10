@@ -48,6 +48,10 @@ p2.forEach(item => {
     observer.observe(item);
 });
 
+window.addEventListener('resize',()=>{
+    console.log(window.innerWidth);
+})
+
 document.getElementById("sd2").onclick = function () {
     document.getElementById("sd2").style.backgroundColor = "#ffcc0000";
     document.getElementById("t1").style.marginRight = "0px";
