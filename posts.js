@@ -804,7 +804,7 @@ function displayPost(postId, post) {
             // Selecting both buttons correctly
             const upvoteBtn = postDiv.querySelector('.upvote-btn');       // Assuming 'upvote-btn' is a class
             const upvoteBtnFile = postDiv.querySelector('.upvote-btn-file');  // Assuming 'upvote-btn-file' is a class
-
+            const upvoteBtnimg = postDiv.querySelector('.upvote-btn-img');
             // Reusable upvote function
             function handleUpvote(button) {
                 const postRef = dbRef(database, `posts/${postId}`);
@@ -841,6 +841,12 @@ function displayPost(postId, post) {
 
             if (upvoteBtnFile) {
                 upvoteBtnFile.addEventListener('click', () => handleUpvote(upvoteBtnFile));
+            } else {
+                console.error("File upvote button not found");
+            }
+
+            if (upvoteBtnimg) {
+                upvoteBtnFile.addEventListener('click', () => handleUpvote(upvoteBtnimg));
             } else {
                 console.error("File upvote button not found");
             }
