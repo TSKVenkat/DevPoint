@@ -846,7 +846,7 @@ function displayPost(postId, post) {
             }
 
             if (upvoteBtnimg) {
-                upvoteBtnFile.addEventListener('click', () => handleUpvote(upvoteBtnimg));
+                upvoteBtnimg.addEventListener('click', () => handleUpvote(upvoteBtnimg));
             } else {
                 console.error("File upvote button not found");
             }
