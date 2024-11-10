@@ -36,12 +36,12 @@ d4.forEach(item => {
     observer.observe(item);
 })
 
-/* document.addEventListener('contextmenu', (e) => e.preventDefault());
+document.addEventListener('contextmenu', (e) => e.preventDefault());
 document.addEventListener('keydown', (e) => {
   if (e.ctrlKey && (e.key === 'U' || e.shiftKey && e.key === 'I')) {
     e.preventDefault();
   }
-}); */
+});
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
@@ -83,7 +83,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (snapshot.exists()) {
                 const res = snapshot.val();
                 for (let user in res) {
-                    console.log(res[user]);
 
                     const messageElement = document.createElement('div');
 
@@ -98,8 +97,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     messageElement.querySelector(".viewbutton").addEventListener("click", (event) => {
                         const userId = event.target.getAttribute("data-user"); // Retrieve the user key
-                        console.log("User key:", userId); // Log the corresponding record key
-                        console.log("User data:", res[userId]); // Log the corresponding user data
 
                         // Populate the popup with user data
                         document.getElementById("img").src = res[userId].photoURL;

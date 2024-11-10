@@ -26,9 +26,7 @@ app.use(express.json());
 
 // Route to handle sending the report email
 app.post('/send-report', async (req, res) => {
-    console.log(req.body);
     const { userEmail, reportContent } = req.body; // Extract userEmail and reportContent from the request body
-    console.log(userEmail);
 
     // Set up the Nodemailer transporter with Gmail configuration
     const transporter = nodemailer.createTransport({

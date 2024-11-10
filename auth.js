@@ -64,7 +64,6 @@ document.getElementById("authbutton").addEventListener("click", () => {
         .then(async (result) => {
             const user = result.user;
             const { uid, email, displayName, photoURL } = user;
-            console.log("User signed up successfully:", { uid, email, displayName, photoURL });
 
             // Save user data to Realtime Database under "users/" node
             await saveUserToDatabase(uid, email, displayName, photoURL);

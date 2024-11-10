@@ -64,7 +64,6 @@ async function fileupload(file) {
   try {
     await uploadBytes(storageref, file);  // Upload file to Firebase Storage
     const url = await getDownloadURL(storageref);  // Get URL to access file
-    console.log("File uploaded successfully. URL:", url);
     return url;
   } catch (error) {
     console.error("Error uploading file:", error);
@@ -94,7 +93,6 @@ async function imgupload(file) {
   try {
     await uploadBytes(storageref, file);  // Upload file to Firebase Storage
     const url = await getDownloadURL(storageref);  // Get URL to access file
-    console.log("File uploaded successfully. URL:", url);
     return url;
   } catch (error) {
     console.error("Error uploading file:", error);
@@ -116,7 +114,6 @@ window.addEventListener('load', async function () {
       onChildAdded(postsRef, (snapshot) => {
         const post = snapshot.val();
         const postId = snapshot.key; // Get the ID of the new post
-        console.log(post);
         if (post) {
           displayPost(postId, post);
         }
@@ -139,12 +136,9 @@ document.getElementById("send-button").addEventListener('click', async function 
   const user = await getCurrentUser(auth);
 
   if (user) {
-    console.log(user);
     const username = user.displayName;
     const photoURL = user.photoURL;
     const email = user.email;
-
-    console.log(user);
 
     const content = document.getElementById('message-input').value;
     var link = document.getElementById('linkupload').value;
@@ -164,16 +158,11 @@ document.getElementById("send-button").addEventListener('click', async function 
     var file = document.getElementById("docupload").files[0]; // Get the file from the input
     var img = document.getElementById('imgupload').files[0];// Get the image from the input
 
-    console.log(img);
-
-    console.log(file);
-
     if (file && !img) {
       var fname = file.name;
       try {
         postData.file_link = await fileupload(file);
         postData.file_name = fname;
-        console.log("File uploaded successfully. Download URL:", url);
         // Use the URL for further processing, e.g., saving it to the database
       } catch (error) {
         console.error("File upload failed:", error);
@@ -182,8 +171,6 @@ document.getElementById("send-button").addEventListener('click', async function 
       // Save post to Firebase after file upload is complete
       if (username && email) {
         const newPostRef = push(dbRef(database, 'iot/'));
-        console.log(postData)
-        console.log(newPostRef)
         console.log("Post submitted successfully!");
         set(newPostRef, postData);
       }
@@ -193,7 +180,6 @@ document.getElementById("send-button").addEventListener('click', async function 
     else if (!file && img) {
       // Update postData with the image link and name after upload is successful
       postData.img = await imgupload(img);
-      console.log(postData.img);
       // Save post to Firebase after file upload is complete
       if (username && email) {
         const newPostRef = push(dbRef(database, 'iot/'));
@@ -206,7 +192,6 @@ document.getElementById("send-button").addEventListener('click', async function 
       var fname = file.name;
       try {
         postData.img = await imgupload(img);
-        console.log(postData.img);
         // Update postData with the file link and name after upload is successful
         postData.file_link = await fileupload(file);
         postData.file_name = fname;
@@ -264,15 +249,10 @@ document.getElementById("attach").addEventListener("click", () => {
 async function displayPost(postId, post) {
   const postDiv = document.createElement('div');
 
-  console.log(post);
-  console.log(post.file_link);
-
   const auth = getAuth(app);
   const user = await getCurrentUser(auth);
   
     if (user) {
-
-      console.log(user);
       if (!post.file_link && !post.img && post.link) {
         // Create post content using post data
         if (post.username == user.displayName) {
@@ -672,11 +652,9 @@ async function displayPost(postId, post) {
       }
 
       else {
-        console.log(post.file_link);
 
         if (post.file_name.length > 13) {
           var fname = post.file_name.slice(0, 10) + "...";
-          console.log(fname);
         }
         else {
           var fname = post.file_name;

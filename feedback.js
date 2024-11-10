@@ -95,13 +95,9 @@ async function imgupload(file) {
     const uniqueName = `images/${Date.now()}-${file.name}`; // Add unique identifier
     const storageref = storageRef(storage, uniqueName);
 
-    console.log(uniqueName);
-    console.log(storageref);
-
     try {
         await uploadBytes(storageref, file);  // Upload file
         const url = await getDownloadURL(storageref);  // Get URL to access file
-        console.log(url);
         return url;
     } catch (error) {
         console.error(error);
@@ -123,7 +119,6 @@ window.addEventListener('load', async function () {
             onChildAdded(postsRef, (snapshot) => {
                 const post = snapshot.val();
                 const postId = snapshot.key; // Get the ID of the new post
-                console.log(post);
                 if (post) {
                     displayPost(postId, post);
                 }
@@ -191,16 +186,12 @@ document.getElementById("Post").addEventListener('click', async function (e) {
 
     var img = document.getElementById('imgupload').files[0];// Get the image from the input
 
-    console.log(img);
-
 
     if (link && !img) {
 
         // Save post to Firebase after file upload is complete
         if (username && email) {
             const newPostRef = push(dbRef(database, 'Feedback/'));
-            console.log(postData)
-            console.log(newPostRef)
             console.log("Post submitted successfully!");
             set(newPostRef, postData);
 
@@ -216,7 +207,6 @@ document.getElementById("Post").addEventListener('click', async function (e) {
     else if (link && img) {
         try {
             postData.img = await imgupload(img);
-            console.log(postData.img);
 
         } catch (error) { console.error(error); }
 
@@ -269,9 +259,6 @@ async function displayPost(postId, post) {
 
 
     const postDiv = document.createElement('div');
-
-    console.log(post);
-    console.log(post.file_link);
 
     if (post.link && !post.img) {
         postDiv.innerHTML = `<div class="postcontainer">

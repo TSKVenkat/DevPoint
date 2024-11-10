@@ -48,9 +48,6 @@ export default async function handler(req, res) {
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
-console.log(process.env.EMAIL_USER)
-console.log(process.env.EMAIL_PASS)
-
 dotenv.config(); // Loads environment variables from .env file
 
 export default async function handler(req, res) {
