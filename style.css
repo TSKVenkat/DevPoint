@@ -313,11 +313,7 @@
 
 /* Set blank screen for smaller devices */
 @media (max-width: 768px) {
-    html {
-        display: none;
-    }
-
     body {
         display: none;
     }
-}
+}    
