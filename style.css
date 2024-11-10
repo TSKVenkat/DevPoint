@@ -394,10 +394,6 @@
     }
 
     img {
-        width: auto;
-        height: 300px;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
         display: none;
     }
 
