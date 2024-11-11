@@ -10,7 +10,7 @@ const sendButton = document.getElementById('send-button');
 const messagesContainer = document.getElementById('messages');
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 // Firebase configuration (replace this with your own Firebase config)
 const firebaseConfig = {
