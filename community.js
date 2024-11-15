@@ -11,10 +11,6 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
         }
-        // Optional: remove 'visible' class when element is out of view
-        else {
-            entry.target.classList.remove('visible');
-        }
     });
 }, {
     // Options

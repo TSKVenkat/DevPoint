@@ -14,580 +14,1179 @@ body.dark-theme {
     flex-direction: row;
 }
 
-.sidebar {
-    width: 15%;
-    height: 680px;
-    background-color: rgba(255, 255, 255, 0.226);
-    backdrop-filter: blur(5px);
-    border-radius: 5px;
-    animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-}
+@media (min-width: 1440px) {
 
-.chat {
-    width: 84%;
-    height: 680px;
-    position: relative;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 0.226);
-    backdrop-filter: blur(5px);
-    border-radius: 5px;
-    animation: slide-down-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
-    display: flex;
-    flex-direction: row;
-    opacity: 0;
-}
-
-@keyframes fade {
-    0% {
+    .sidebar {
+        width: 15%;
+        height: 680px;
+        background-color: rgba(255, 255, 255, 0.226);
+        backdrop-filter: blur(5px);
+        border-radius: 5px;
+        animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+        display: flex;
+        flex-direction: column;
         opacity: 0;
     }
 
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes slide-up-opacity {
-    0% {
-        transform: translateY(100%);
+    .chat {
+        width: 84%;
+        height: 680px;
+        position: relative;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.226);
+        backdrop-filter: blur(5px);
+        border-radius: 5px;
+        animation: slide-down-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+        display: flex;
+        flex-direction: row;
         opacity: 0;
     }
 
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
 
-@keyframes slide-down-opacity {
-    0% {
-        transform: translateY(-100%);
-        opacity: 0;
+        100% {
+            opacity: 1;
+        }
     }
 
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
+    @keyframes slide-up-opacity {
+        0% {
+            transform: translateY(100%);
+            opacity: 0;
+        }
 
-.logo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    position: relative;
-    top: 10px;
-    /*animation: fade;
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-down-opacity {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        position: relative;
+        top: 10px;
+        /*animation: fade;
     animation-duration: 4s;*/
+    }
+
+    strong {
+        font-family: "Poppins", sans-serif;
+        font-size: 30px;
+        font-weight: 600;
+        color: white;
+        position: relative;
+        top: 5px;
+        right: 10px;
+    }
+
+    .btn {
+        color: black;
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 50px;
+        height: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        transform: .2s;
+        border: 0px;
+    }
+
+    /*IDs*/
+
+    #profile {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 50px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #profile:hover {
+        background-color: rgba(250, 235, 215, 0.282);
+        backdrop-filter: blur(5px);
+    }
+
+    #chat {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 60px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #chat:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(2px);
+    }
+
+    #about {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 110px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #about:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
+
+    #posts {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 70px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #posts:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
+
+    #report {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 80px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #report:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
+
+    #meta {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 100px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #meta:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
+
+    #notice {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 90px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #notice:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
+
+    #signout {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 120px;
+        left: 5px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 95%;
+        border: 0px;
+    }
+
+    #signout:hover {
+        background-color: rgba(255, 0, 0, 0.638);
+        backdrop-filter: blur(5px);
+    }
+
+    #message-input {
+        resize: none;
+        width: 90%;
+        height: 50px;
+        margin: 23px;
+        position: absolute;
+        bottom: 0px;
+        border-radius: 5px;
+        /*border-color: yellow;*/
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+        font-family: "Poppins", sans-serif;
+        color: white;
+        transform: .2s;
+    }
+
+    #message-input:hover {
+        transform: scale(1.02);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+    #theme-toggle {
+        width: 80%;
+        height: 35px;
+        position: absolute;
+        left: 23px;
+        bottom: 30px;
+        border-radius: 5px;
+        background-color: rgb(11, 73, 207);
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        border: white;
+        transition: transform .2s;
+    }
+
+    #theme-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+    body.dark-theme #theme-toggle {
+        /* Dark theme button styles */
+        background-color: black;
+        color: white;
+    }
+
+    /*for chat system*/
+    /* Chat container */
+
+    /* Message container */
+    #messages {
+        max-height: 80vh;
+        /* Constrain height */
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-bottom: 20px;
+        padding-right: 10px;
+        height: 550px;
+        width: 95%;
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(1px);
+    }
+
+    /* Message bubbles */
+    .message {
+        max-width: 50%;
+        width: auto;
+        margin: 10px 0;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 14px;
+        /*word-wrap: break-word;*/
+    }
+
+    /* Differentiate between own messages and others' messages */
+    .my-message {
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        background-color: #ffffff88;
+        backdrop-filter: blur(2px);
+        align-self: flex-end;
+        color: black;
+    }
+
+    .other-message {
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        margin: 10px;
+        background-color: #18181850;
+        backdrop-filter: blur(2px);
+        align-self: flex-start;
+        color: white;
+        hyphens: auto;
+        /* Optional: Adds hyphens where appropriate */
+    }
+
+    .post-message {
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        margin: 10px;
+        background-color: #18181850;
+        backdrop-filter: blur(2px);
+        align-self: flex-start;
+        color: white;
+    }
+
+    /* Send button styles */
+    #send-button {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 50px;
+        height: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        transform: .2s;
+        border: 0px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        margin: 25px;
+    }
+
+    #send-button:hover {
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+    #postbutton {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 75px;
+        height: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        transform: .2s;
+        border: 0px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+    }
+
+    #postbutton:hover {
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+    #postbuttondiv {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        width: 600px;
+        margin: 25px;
+        position: absolute;
+        bottom: 0px;
+    }
+
+    #postbuttondiv p {
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        margin: 10px;
+    }
+
+    .popup {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.371);
+        /* Black background with opacity */
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .popup-content {
+        background-color: rgba(255, 255, 255, 0.342);
+        padding: 20px;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 600px;
+        position: relative;
+        transition: transform .2s;
+        font-family: "Poppins";
+        font-size: 15px;
+        color: #000000;
+    }
+
+    .popup-content a {
+        text-decoration: solid;
+        color: #0b49cf;
+    }
+
+    .popup-content:hover {
+        transform: scale(1.01);
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    }
+
+    .popup-content label {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .popup-content input {
+        width: 99%;
+        height: 25px;
+        border-radius: 5px;
+        /*border-color: yellow;*/
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+    }
+
+    #docupload,
+    #imgupload {
+        width: auto;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        background-color: transparent;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    #message-report {
+        width: 99%;
+        height: 200px;
+        resize: none;
+        border-radius: 5px;
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+        font-family: "Poppins", sans-serif;
+        color: white;
+    }
+
+    #message-post {
+        width: 99%;
+        height: 80px;
+        resize: none;
+        border-radius: 5px;
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+        font-family: "Poppins", sans-serif;
+        color: white;
+    }
+
+    #reportbutton {
+        color: rgb(255, 255, 255);
+        background-color: rgb(190, 1, 1);
+        border-radius: 5px;
+        width: 50px;
+        height: 30px;
+        font-size: 12px;
+        font-weight: bold;
+        border: 0px;
+        position: absolute;
+        bottom: 10px;
+    }
+
+    #post-button {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 50px;
+        height: 30px;
+        font-size: 12px;
+        font-weight: bold;
+        border: 0px;
+        position: absolute;
+        bottom: 10px;
+    }
+
+    .filedisplay {
+        background-color: rgba(51, 51, 51, 0.399);
+        backdrop-filter: blur(3px);
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+
+    }
+
+    .filedisplay svg {
+        margin: 10px;
+    }
+
+    .docurl {
+        text-decoration: none;
+        color: wheat;
+    }
+
+    #sd {
+        position: absolute;
+        left: 35px;
+        bottom: 25px;
+        margin-left: 10px;
+        text-decoration: none;
+        width: 120px;
+        text-align: left;
+        font-family: "Poppins", sans-serif;
+        font-size: auto;
+        color: royalblue;
+        overflow-wrap: anywhere;
+        /* Forces wrapping at any point */
+        word-break: break-word;
+        /* Allows breaking in the middle of words if necessary */
+        hyphens: auto;
+        font-size: 10px;
+    }
 }
 
-strong {
-    font-family: "Poppins", sans-serif;
-    font-size: 30px;
-    font-weight: 600;
-    color: white;
-    position: relative;
-    top: 5px;
-    right: 10px;
-}
+@media (min-width: 1024px) and (max-width: 1439px) {
 
-.btn {
-    color: black;
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    width: 50px;
-    height: 50px;
-    font-size: 12px;
-    font-weight: bold;
-    transform: .2s;
-    border: 0px;
-}
+    .sidebar {
+        width: 15%;
+        height: 680px;
+        background-color: rgba(255, 255, 255, 0.226);
+        backdrop-filter: blur(5px);
+        border-radius: 5px;
+        animation: slide-up-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+    }
 
-/*IDs*/
+    .chat {
+        width: 84%;
+        height: 680px;
+        position: relative;
+        left: 10px;
+        background-color: rgba(255, 255, 255, 0.226);
+        backdrop-filter: blur(5px);
+        border-radius: 5px;
+        animation: slide-down-opacity .6s cubic-bezier(0.4, 0, 0.2, 1) 500ms forwards;
+        display: flex;
+        flex-direction: row;
+        opacity: 0;
+    }
 
-#profile {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 50px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
 
-#profile:hover {
-    background-color: rgba(250, 235, 215, 0.282);
-    backdrop-filter: blur(5px);
-}
+        100% {
+            opacity: 1;
+        }
+    }
 
-#chat {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 60px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    @keyframes slide-up-opacity {
+        0% {
+            transform: translateY(100%);
+            opacity: 0;
+        }
 
-#chat:hover {
-    background-color: rgba(250, 235, 215, 0.163);
-    backdrop-filter: blur(2px);
-}
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 
-#about {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 110px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    @keyframes slide-down-opacity {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
 
-#about:hover {
-    background-color: rgba(250, 235, 215, 0.163);
-    backdrop-filter: blur(5px);
-}
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 
-#posts {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 70px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    .logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        position: relative;
+        top: 10px;
+        /*animation: fade;
+    animation-duration: 4s;*/
+    }
 
-#posts:hover {
-    background-color: rgba(250, 235, 215, 0.163);
-    backdrop-filter: blur(5px);
-}
+    .logo svg{
+        width: 30px;
+        height: auto;
+        position: relative;
+        top: 15px;
+    }
 
-#report {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 80px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    strong {
+        font-family: "Poppins", sans-serif;
+        font-size: 23px;
+        font-weight: 600;
+        color: white;
+        position: relative;
+        top: 20px;
+        right: 5px;
+    }
 
-#report:hover {
-    background-color: rgba(250, 235, 215, 0.163);
-    backdrop-filter: blur(5px);
-}
+    .btn {
+        color: black;
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 50px;
+        height: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        transform: .2s;
+        border: 0px;
+    }
 
-#meta {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 100px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    /*IDs*/
 
-#meta:hover {
-    background-color: rgba(250, 235, 215, 0.163);
-    backdrop-filter: blur(5px);
-}
+    #profile {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 50px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-#notice {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 90px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    #profile:hover {
+        background-color: rgba(250, 235, 215, 0.282);
+        backdrop-filter: blur(5px);
+    }
 
-#notice:hover {
-    background-color: rgba(250, 235, 215, 0.163);
-    backdrop-filter: blur(5px);
-}
+    #chat {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 60px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-#signout {
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-    position: relative;
-    top: 120px;
-    left: 5px;
-    background-color: rgba(240, 248, 255, 0.051);
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    width: 95%;
-    border: 0px;
-}
+    #chat:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(2px);
+    }
 
-#signout:hover {
-    background-color: rgba(255, 0, 0, 0.638);
-    backdrop-filter: blur(5px);
-}
+    #about {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 110px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-#message-input {
-    resize: none;
-    width: 90%;
-    height: 50px;
-    margin: 23px;
-    position: absolute;
-    bottom: 0px;
-    border-radius: 5px;
-    /*border-color: yellow;*/
-    border: 0px;
-    background-color: rgba(255, 255, 255, 0.441);
-    font-family: "Poppins", sans-serif;
-    color: white;
-    transform: .2s;
-}
+    #about:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
 
-#message-input:hover {
-    transform: scale(1.02);
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+    #posts {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 70px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-#theme-toggle {
-    width: 80%;
-    height: 35px;
-    position: absolute;
-    left: 23px;
-    bottom: 30px;
-    border-radius: 5px;
-    background-color: rgb(11, 73, 207);
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: white;
-    border: white;
-    transition: transform .2s;
-}
+    #posts:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
 
-#theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+    #report {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 80px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-body.dark-theme #theme-toggle {
-    /* Dark theme button styles */
-    background-color: black;
-    color: white;
-}
+    #report:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
 
-/*for chat system*/
-/* Chat container */
+    #meta {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 100px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-/* Message container */
-#messages {
-    max-height: 80vh; /* Constrain height */
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    border-radius: 5px;
-    margin-top: 20px;
-    margin-right: 25px;
-    margin-left: 25px;
-    margin-bottom: 20px;
-    padding-right: 10px;
-    height: 550px;
-    width: 95%;
-    background-color: rgba(255, 255, 255, 0);
-    backdrop-filter: blur(1px);
-}
+    #meta:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
 
-/* Message bubbles */
-.message {
-    max-width: 50%;
-    width: auto;
-    margin: 10px 0;
-    padding: 10px 15px;
-    border-radius: 10px;
-    font-size: 14px;
-    /*word-wrap: break-word;*/
-}
+    #notice {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 90px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-/* Differentiate between own messages and others' messages */
-.my-message {
-    font-family: "Poppins", sans-serif;
-    font-size: 15px;
-    background-color: #ffffff88;
-    backdrop-filter: blur(2px);
-    align-self: flex-end;
-    color: black;
-}
+    #notice:hover {
+        background-color: rgba(250, 235, 215, 0.163);
+        backdrop-filter: blur(5px);
+    }
 
-.other-message {
-    font-family: "Poppins", sans-serif;
-    font-size: 15px;
-    margin: 10px;
-    background-color: #18181850;
-    backdrop-filter: blur(2px);
-    align-self: flex-start;
-    color: white;
-    hyphens: auto;
-    /* Optional: Adds hyphens where appropriate */
-}
+    #signout {
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: white;
+        position: relative;
+        top: 120px;
+        background-color: rgba(240, 248, 255, 0.051);
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        width: 90%;
+        align-self: center;
+        border: 0px;
+    }
 
-.post-message {
-    font-family: "Poppins", sans-serif;
-    font-size: 15px;
-    margin: 10px;
-    background-color: #18181850;
-    backdrop-filter: blur(2px);
-    align-self: flex-start;
-    color: white;
-}
+    #signout:hover {
+        background-color: rgba(255, 0, 0, 0.638);
+        backdrop-filter: blur(5px);
+    }
 
-/* Send button styles */
-#send-button {
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    width: 50px;
-    height: 50px;
-    font-size: 12px;
-    font-weight: bold;
-    transform: .2s;
-    border: 0px;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    margin: 25px;
-}
+    #message-input {
+        resize: none;
+        width: 90%;
+        height: 50px;
+        margin: 23px;
+        position: absolute;
+        bottom: 0px;
+        border-radius: 5px;
+        /*border-color: yellow;*/
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+        font-family: "Poppins", sans-serif;
+        color: white;
+        transform: .2s;
+    }
 
-#send-button:hover {
-    transform: scale(1.1);
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+    #message-input:hover {
+        transform: scale(1.02);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
 
-#postbutton {
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    width: 75px;
-    height: 50px;
-    font-size: 12px;
-    font-weight: bold;
-    transform: .2s;
-    border: 0px;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    font-family: "Poppins",sans-serif;
-    font-size: 20px;
-}
+    #theme-toggle {
+        width: 80%;
+        height: 35px;
+        position: absolute;
+        left: 15px;
+        bottom: 30px;
+        border-radius: 5px;
+        background-color: rgb(11, 73, 207);
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: white;
+        border: white;
+        transition: transform .2s;
+    }
 
-#postbutton:hover {
-    transform: scale(1.1);
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+    #theme-toggle:hover {
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
 
-#postbuttondiv {
-    display: flex;
-    flex-direction: row;
-    height: 50px;
-    width: 600px;
-    margin: 25px;
-    position: absolute;
-    bottom: 0px;
-}
+    body.dark-theme #theme-toggle {
+        /* Dark theme button styles */
+        background-color: black;
+        color: white;
+    }
 
-#postbuttondiv p{
-    font-family: "Poppins", sans-serif;
-    font-size: 18px;
-    margin: 10px;
-}
+    /*for chat system*/
+    /* Chat container */
 
-.popup {
-    display: none; /* Hidden by default */
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.371); /* Black background with opacity */
-    backdrop-filter: blur(5px);
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-}
+    /* Message container */
+    #messages {
+        max-height: 80vh;
+        /* Constrain height */
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        border-radius: 5px;
+        margin-top: 20px;
+        margin-right: 25px;
+        margin-left: 25px;
+        margin-bottom: 20px;
+        padding-right: 10px;
+        height: 550px;
+        width: 95%;
+        background-color: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(1px);
+    }
 
-.popup-content {
-    background-color: rgba(255, 255, 255, 0.342);
-    padding: 20px;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 600px;
-    position: relative;
-    transition: transform .2s;
-    font-family: "Poppins";
-    font-size: 15px;
-    color: #000000;
-}
+    /* Message bubbles */
+    .message {
+        max-width: 50%;
+        width: auto;
+        margin: 10px 0;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-size: 14px;
+        /*word-wrap: break-word;*/
+    }
 
-.popup-content a{
-    text-decoration:solid;
-    color: #0b49cf;
-}
+    /* Differentiate between own messages and others' messages */
+    .my-message {
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        background-color: #ffffff88;
+        backdrop-filter: blur(2px);
+        align-self: flex-end;
+        color: black;
+    }
 
-.popup-content:hover {
-    transform: scale(1.01);
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
+    .other-message {
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        margin: 10px;
+        background-color: #18181850;
+        backdrop-filter: blur(2px);
+        align-self: flex-start;
+        color: white;
+        hyphens: auto;
+        /* Optional: Adds hyphens where appropriate */
+    }
 
-.popup-content label{
-    font-family: "Poppins",sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-}
+    .post-message {
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        margin: 10px;
+        background-color: #18181850;
+        backdrop-filter: blur(2px);
+        align-self: flex-start;
+        color: white;
+    }
 
-.popup-content input{
-    width: 99%;
-    height: 25px;
-    border-radius: 5px;
-    /*border-color: yellow;*/
-    border: 0px;
-    background-color: rgba(255, 255, 255, 0.441);
-}
+    /* Send button styles */
+    #send-button {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 50px;
+        height: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        transform: .2s;
+        border: 0px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        margin: 25px;
+    }
 
-#docupload,#imgupload {
-    width: auto;
-    font-family: "Poppins",sans-serif;
-    font-weight: 300;
-    background-color: transparent;
-}
+    #send-button:hover {
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
 
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
-}
+    #postbutton {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 75px;
+        height: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        transform: .2s;
+        border: 0px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+    }
 
-#message-report {
-    width: 99%;
-    height: 200px;
-    resize: none;
-    border-radius: 5px;
-    border: 0px;
-    background-color: rgba(255, 255, 255, 0.441);
-    font-family: "Poppins", sans-serif;
-    color: white;
-}
+    #postbutton:hover {
+        transform: scale(1.1);
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
 
-#message-post {
-    width: 99%;
-    height: 80px;
-    resize: none;
-    border-radius: 5px;
-    border: 0px;
-    background-color: rgba(255, 255, 255, 0.441);
-    font-family: "Poppins", sans-serif;
-    color: white;
-}
+    #postbuttondiv {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        width: 600px;
+        margin: 25px;
+        position: absolute;
+        bottom: 0px;
+    }
 
-#reportbutton {
-    color: rgb(255, 255, 255);
-    background-color: rgb(190, 1, 1);
-    border-radius: 5px;
-    width: 50px;
-    height: 30px;
-    font-size: 12px;
-    font-weight: bold;
-    border: 0px;
-    position: absolute;
-    bottom: 10px;
-}
+    #postbuttondiv p {
+        font-family: "Poppins", sans-serif;
+        font-size: 18px;
+        margin: 10px;
+    }
 
-#post-button {
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px;
-    width: 50px;
-    height: 30px;
-    font-size: 12px;
-    font-weight: bold;
-    border: 0px;
-    position: absolute;
-    bottom: 10px;
-}
+    .popup {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.371);
+        /* Black background with opacity */
+        backdrop-filter: blur(5px);
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
 
-.filedisplay {
-    background-color: rgba(51, 51, 51, 0.399);
-    backdrop-filter: blur(3px);
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    
-}
+    .popup-content {
+        background-color: rgba(255, 255, 255, 0.342);
+        padding: 20px;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 600px;
+        position: relative;
+        transition: transform .2s;
+        font-family: "Poppins";
+        font-size: 15px;
+        color: #000000;
+    }
 
-.filedisplay svg {
-    margin: 10px;
-}
+    .popup-content a {
+        text-decoration: solid;
+        color: #0b49cf;
+    }
 
-.docurl {
-    text-decoration: none;
-    color: wheat;
-}
+    .popup-content:hover {
+        transform: scale(1.01);
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    }
 
-#sd{
-    position: absolute;
-    left: 35px;
-    bottom: 25px;
-    margin-left: 10px;
-    text-decoration: none;
-    width: 120px;
-    text-align: left;
-    font-family: "Poppins", sans-serif;
-    font-size: auto;
-    color: royalblue;
-    overflow-wrap: anywhere;
-    /* Forces wrapping at any point */
-    word-break: break-word;
-    /* Allows breaking in the middle of words if necessary */
-    hyphens: auto;
-    font-size: 10px;
+    .popup-content label {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .popup-content input {
+        width: 99%;
+        height: 25px;
+        border-radius: 5px;
+        /*border-color: yellow;*/
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+    }
+
+    #docupload,
+    #imgupload {
+        width: auto;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        background-color: transparent;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    #message-report {
+        width: 99%;
+        height: 200px;
+        resize: none;
+        border-radius: 5px;
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+        font-family: "Poppins", sans-serif;
+        color: white;
+    }
+
+    #message-post {
+        width: 99%;
+        height: 80px;
+        resize: none;
+        border-radius: 5px;
+        border: 0px;
+        background-color: rgba(255, 255, 255, 0.441);
+        font-family: "Poppins", sans-serif;
+        color: white;
+    }
+
+    #reportbutton {
+        color: rgb(255, 255, 255);
+        background-color: rgb(190, 1, 1);
+        border-radius: 5px;
+        width: 50px;
+        height: 30px;
+        font-size: 12px;
+        font-weight: bold;
+        border: 0px;
+        position: absolute;
+        bottom: 10px;
+    }
+
+    #post-button {
+        color: rgb(255, 255, 255);
+        background-color: rgb(0, 0, 0);
+        border-radius: 5px;
+        width: 50px;
+        height: 30px;
+        font-size: 12px;
+        font-weight: bold;
+        border: 0px;
+        position: absolute;
+        bottom: 10px;
+    }
+
+    .filedisplay {
+        background-color: rgba(51, 51, 51, 0.399);
+        backdrop-filter: blur(3px);
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+
+    }
+
+    .filedisplay svg {
+        margin: 10px;
+    }
+
+    .docurl {
+        text-decoration: none;
+        color: wheat;
+    }
+
+    #sd {
+        position: absolute;
+        left: 35px;
+        bottom: 25px;
+        margin-left: 10px;
+        text-decoration: none;
+        width: 120px;
+        text-align: left;
+        font-family: "Poppins", sans-serif;
+        font-size: auto;
+        color: royalblue;
+        overflow-wrap: anywhere;
+        /* Forces wrapping at any point */
+        word-break: break-word;
+        /* Allows breaking in the middle of words if necessary */
+        hyphens: auto;
+        font-size: 10px;
+    }
 }
